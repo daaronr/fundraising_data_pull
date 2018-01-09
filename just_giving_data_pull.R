@@ -4,7 +4,8 @@ library(jsonlite)
 library(rlist)
 library(XML)
 
-source(my_app_id.R) #sources the file you just created with your app id on JustGiving
+source("my_app_id.R") #sources the file you just created with your app id on JustGiving
+
 charities_csv <- 'effective_charities.csv' #replace with your list of preferred charities (this script currently only uses charity name and JustGiving ID)
 data_folder <- 'data\\just_giving_data' #folder where the data ends up
 
