@@ -8,7 +8,7 @@ current_donations.csv will contain all the donations to the fundraisers
 
 It also creates 2 all_* files that increase in size every time you run the script - this is to capture data changes and to retain data from expired pages (which can't be accessed through the api).
 
-The charities that this script uses (in effective_charities.csv) are all recommended by one or more organisations associated with effective alturism:
+The charities that this script uses (in effective_charities.csv) are all recommended by one or more organisations associated with effective altruism:
 https://www.givewell.org/
 https://www.thelifeyoucansave.org/
 https://ea-foundation.org/
