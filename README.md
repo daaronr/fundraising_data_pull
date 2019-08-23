@@ -57,7 +57,7 @@ These files are created as a record of the state of the full sample of pages. Th
 
 * for transparency - this data can be published as a way of allowing our entire process to be visible.
 
-###Updated:
+### Updated:
 **data_pulls.csv** is updated after every pull with the date and the file paths of the 2 files created (fundraisers and donations). The most recent files referenced in this table are used to update the other files.
 
 **experimental_pages.csv** contains the page data from all of the fundraising pages that have been selected for the experiment, both the treatment(s) and control pages.
@@ -99,3 +99,5 @@ There will need to be periodic data collection due to the fact that pages can ex
 my_app_id <- {/your app id}
 
 #You may need to add quotes around this, i.e., my_app_id <- "/id_number"
+
+23 Aug 2019 meaningless note
