@@ -100,4 +100,3 @@ my_app_id <- {/your app id}
 
 #You may need to add quotes around this, i.e., my_app_id <- "/id_number"
 
-23 Aug 2019 meaningless note
