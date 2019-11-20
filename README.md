@@ -38,7 +38,7 @@ The charities that this script uses (in effective_charities.csv) are all recomme
 
 *[Note, 4 Aug 2018: ATM both lists seem to include the international megacharities]*
 
-###Created:
+### Created:
 A table of currently live (not yet expired) JG fundraising **pages** is created in
 ```
 {data\just_giving_data_snapshots\fundraisers}
@@ -72,7 +72,7 @@ These files are created as a record of the state of the full sample of pages. Th
 
 ## Expected experimental process
 
-####Every 1-3 days:
+#### Every 1-3 days:
 1. Run the main.R script
 	+ This will download all the required data and split new pages (pages that have received at least one donation but are not yet part of the experiment) into treatment and control.
 	+ Treatment and control are determined by the last digit (seconds) of the time of the first donations. Even = Control. Odd = Treatment.
@@ -87,7 +87,7 @@ The active part of the experiment will be over once we have depleted the pre-def
 
 *[DR: We might try to plan this to run until we achieve a sufficient statistical power to detect a minimum-size effect]*
 
-####After the donation part of the experiment
+#### After the donation part of the experiment
 
 There will need to be periodic data collection due to the fact that pages can expire (we would lose access to this data). As some pages expire after years, we will need pragmatically decide an end point to our observations [DR: and preregister this]. Most donations come before or immediatley after the event being fundraised for so this shouldn't be too long.
 
