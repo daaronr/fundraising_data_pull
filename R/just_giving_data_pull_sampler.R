@@ -66,7 +66,7 @@ Mode <- function(x) {
 fundraising_page_data_s_10K %>% group_by(charity.name) %>% summarise(N=n(), mode.charity.id=Mode(charity.id)) %>% arrange(desc(N)) %>% print(,n=20)
 
 #Get all current donations on the fundraising pages
-donation_data_s <-
+donation_data_s_10k <-
   map(fundraising_page_data_s_10K$pageShortName, get_fundraiser_donations) %>%
   reduce(bind_rows) %>%
   mutate(date_downloaded = Sys.time())
@@ -76,18 +76,17 @@ dir.create(snapshots_folder, showWarnings = FALSE)
 dir.create(donations_folder, showWarnings = FALSE)
 dir.create(fundraisers_folder, showWarnings = FALSE)
 
-write_csv(fundraising_page_data_s_10K, current_fundraisers_file)
-write_csv(donation_data_s_10k, current_donations_file)
-#DR: I think we also want these saved as R files for our analysis; csv may lead to loss of data formats (or am I missing something?):
-write_rds(fundraising_page_data_s_10K,current_fundraisers_file_rds)
-write_csv(donation_data_s_10k, current_donations_file_rds)
+write_csv(fundraising_page_data_s_10K, current_fundraisers_file_s)
+write_csv(donation_data_s_10k, current_donations_file_s)
+write_rds(fundraising_page_data_s_10K,current_fundraisers_file_s_rds)
+write_rds(donation_data_s_10k, current_donations_file_s_rds)
 
 #The code  below creates a table of data pull events. So that the most recents data is used and we retain a record of our behaviour
 this_data_pull <- data.frame(date, time)
 names(this_data_pull) <- c('date', 'datetime')
 this_data_pull <- this_data_pull %>%
-  mutate(donations_file_path = current_donations_file,
-         fundraisers_file_path = current_fundraisers_file)
+  mutate(donations_file_path = current_donations_file_sample,
+         fundraisers_file_path = current_fundraisers_file_sample)
 
 if(file.exists(table_of_data_pulls)){
   data_pulls <- read_csv(table_of_data_pulls)
