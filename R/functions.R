@@ -40,6 +40,23 @@ get_charity_fundraising_pages <- function(charity_name, id){
   return(fundraisers_data)
 }
 
+get_charity_fundraising_pages_sample <- function(charity_name, id){
+  charity_search_name <- gsub(' ', '%20', charity_name)
+  uri <- paste('/v1/onesearch?q=', charity_search_name, '&i=Fundraiser&limit=9999', sep = '')
+  print(paste('Searching for fundraisers for:', charity_name))
+  charity_search_response <- get_data_from_api(uri)
+  if(charity_search_response$Total == 0){
+    return(NULL)
+  }
+  fundraisers_data <- charity_search_response[['GroupedResults']][[1]][['Results']] %>%
+    map(list_to_tibble) %>%
+    reduce(bind_rows)%>%
+    mutate(charity = charity_name,
+           searched_charity_id = id)  %>%
+    filter(searched_charity_id==CharityId) #filter out where id's do not match ('justgiving_id')
+  return(fundraisers_data)
+}
+
 #This takes a fundraisers id and gets the data for it (a single row of info)
 get_fundraising_data <- function(fundraiser_id){
   print(paste('Getting data for fundraiser with id', fundraiser_id))
@@ -54,7 +71,7 @@ get_fundraising_data <- function(fundraiser_id){
     return(fundraiser)
 }
 
-#This takes a fundraiser short name and extracts all the donation data, retuning them as a tibble
+#This takes a fundraiser short name and extracts all the donation data, returning them as a tibble
 get_fundraiser_donations <- function(short_page_name){
   print(paste('Getting donations from fundraiser with short name', short_page_name))
   uri <- paste('/v1/fundraising/pages/', short_page_name, '/donations', sep = '')

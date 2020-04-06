@@ -8,11 +8,15 @@ p_load(dplyr,magrittr,purrr,tidyverse,tidyr,broom,janitor, here,glue,dataMaid,re
 data_folder <- 'data'
 #File that lists the target charities with their ids
 charities_csv <- file.path(data_folder, 'effective_charities.csv') #replace with your list of preferred charities (this script currently only uses charity name and JustGiving ID)
+
+charities_csv_sample <- file.path(data_folder, 'charity_sample.csv')
+# 1 Apr 2020: I quickly constructed this by adding from the list here: https://yougov.co.uk/ratings/politics/popularity/charities-organisations/all, selecting from the top-10 charities only
+
 #A folder that contains all the fundraising and donation data, a new copy each time the code is run
 snapshots_folder <- file.path(data_folder, 'just_giving_data_snapshots')
 
-#In the get_current... file, We don't look at pages with first donation that comes before the...
-experiment_start_date <- as.Date('2019/07/13') #REMEMBER to reset this!!
+#In the get_current... file, We don't look at pages with first donation that comes before the
+experiment_start_date <- as.Date('2018/04/13') #REMEMBER to reset this!!
 date = Sys.Date()
 time = Sys.time()
 
@@ -36,8 +40,17 @@ current_experimental_donation_state_path <- file.path(data_folder, 'donations_to
 source("my_app_id.R")
 #This contains various functions that the other scripts need to call
 source("R/functions.R")
-#Downloads all current data for the target charities, also saves a snapshot
-source("R/just_giving_data_pull.R")
+
+n <- readline("Do you want Effective charity fundraisers (E) or a Sample of all fundraisers? (E/S)")
+
+if (n=="E") {
+  #Downloads all current data for the target charities, also saves a snapshot
+  source("R/just_giving_data_pull.R")
+} else {
+  print{"sourcing effective, and a sample of all charities"}
+  source("R/just_giving_data_pull_sampler.R") #recoded version of the above, to get fundraisers for all effective charities and a (?sample) of other charities
+}
+
 
 #Performs the randomisation, outputs a file listing all new treatment groups, and saves the current state of experimental pages
 source("R/get_current_state_and_randomise.R")
