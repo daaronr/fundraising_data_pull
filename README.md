@@ -64,6 +64,7 @@ These files are created as a record of the state of the full sample of pages. Th
 ### Updated:
 **data_pulls.csv** is updated after every pull with the date and the file paths of the 2 files created (fundraisers and donations). The most recent files referenced in this table are used to update the other files.
 
+Note: additional details for our project [moved to private page](https://github.com/daaronr/sponsorship_design_analysis/tree/master/preregistration_plans_notes)
 
 my_app_id <- {/your app id}
 
