@@ -63,6 +63,7 @@ my_app_id <- {/your app id}
 
 
 ### Notes: {#notes}
+
 The charities that this script uses (in `effective_charities.csv`) are all recommended by one or more organisations associated with effective altruism (However, this could be adjusted):
 [GiveWell](https://www.givewell.org/)
 https://www.thelifeyoucansave.org/
