@@ -14,19 +14,10 @@ my_app_id <- "/[ID]"
 replacing "[ID]" with your ID, without the brackets.
 
 Next...
-
-The charities that this script uses (in effective_charities.csv) are all recommended by one or more organisations associated with effective altruism:
-https://www.givewell.org/
-https://www.thelifeyoucansave.org/
-https://ea-foundation.org/
-https://animalcharityevaluators.org/
+/
 
 Install the packages at the top of main.R.
-Open
-```
-fundraising_data_pull.Rproj
-```
-using R and run main.R .
+Open `fundraising_data_pull.Rproj`  using R and run `main.R`.
 It will take 30 - 60 minutes to download all the data; this appears to be determined by Just Giving API limits.
 
 ## What are the files created?
@@ -36,9 +27,8 @@ Note that we must run this regularly to retain data from expired pages (which ca
 
 *DR: The above needs clarification. The 'all_' files are no longer being created I think*
 
-The charities that this script uses (in effective_charities.csv) are all recommended by one or more organisations associated with effective altruism (although in some cases the lists only recommend targeting a particular part of the charity's work) [and see comment below].
+The charities that this script uses (in effective_charities.csv) are all recommended by one or more organisations associated with effective altruism (although in some cases the lists only recommend targeting a particular part of the charity's work) [and see comment below](#notes).
 
-(Note: we also give a broader list in the file effective_charities_plus, including some additional international mega-charities like MSF.)
 
 *[Note, 4 Aug 2018: ATM both lists seem to include the international megacharities]*
 
@@ -61,12 +51,26 @@ These files are created as a record of the state of the full sample of pages. Th
 
 * for transparency - this data can be published as a way of allowing our entire process to be visible.
 
+
 ### Updated:
-**data_pulls.csv** is updated after every pull with the date and the file paths of the 2 files created (fundraisers and donations). The most recent files referenced in this table are used to update the other files.
+**data_pulls.csv** is updated after every pull with the date and the file paths of the two files created (fundraisers and donations). The most recent files referenced in this table are used to update the other files.
 
 Note: additional details for our project [moved to private page](https://github.com/daaronr/sponsorship_design_analysis/tree/master/preregistration_plans_notes)
 
 my_app_id <- {/your app id}
 
-#You may need to add quotes around this, i.e., my_app_id <- "/id_number"
+*You may need to add quotes around this, i.e.:* `my_app_id <- "/id_number"`
+
+
+### Notes: {#notes}
+The charities that this script uses (in `effective_charities.csv`) are all recommended by one or more organisations associated with effective altruism (However, this could be adjusted):
+[GiveWell](https://www.givewell.org/)
+https://www.thelifeyoucansave.org/
+https://ea-foundation.org/
+https://animalcharityevaluators.org
+
+
+We also give a broader list in the file effective_charities_plus, including some additional international mega-charities like MSF.
+
+
 
