@@ -62,7 +62,7 @@ my_app_id <- {/your app id}
 *You may need to add quotes around this, i.e.:* `my_app_id <- "/id_number"`
 
 
-### Notes: {#notes}
+### Notes
 
 The charities that this script uses (in `effective_charities.csv`) are all recommended by one or more organisations associated with effective altruism (However, this could be adjusted):
 [GiveWell](https://www.givewell.org/)
