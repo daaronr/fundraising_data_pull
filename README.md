@@ -73,5 +73,10 @@ https://animalcharityevaluators.org
 
 We also give a broader list in the file effective_charities_plus, including some additional international mega-charities like MSF.
 
+## 'Post-covid' project
+
+TODO: briefly reference/document the adjusted pull for this specific project, what is done where, etc. 
+We recently pulled 9999 entries (the max) per charity for each of the top-10 UK charities as well as the effective charities. 
+
 
 
