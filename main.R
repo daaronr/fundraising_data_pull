@@ -1,11 +1,10 @@
 library(pacman)
-#knitr,dplyr,tidyverse,labelled,citr,reporttools,magrittr,glue,huxtable,experiment,dataMaid,broom,janitor,here,xRStata,estimatr,xtable
-p_load(dplyr,magrittr,purrr,tidyverse,tidyr,broom,janitor, here,glue,dataMaid,readr,lubridate,summarytools, httr,jsonlite,rlist,XML)
 
-#other packages I often use: knitr,  citr, reporttools, glue, experiment, estimatr, broom, kableExtra, purrr, ggsignif, recipes, glmnet, glmnetUtils, rsample,snakecase)
+p_load(dplyr,magrittr,purrr,tidyverse,tidyr,broom,janitor, here,glue,dataMaid,readr,lubridate,summarytools, httr,jsonlite,rlist,XML)
 
 #Folder holding all the raw data and files that are created for the process
 data_folder <- 'data'
+
 #File that lists the target charities with their ids
 charities_csv <- file.path(data_folder, 'effective_charities.csv') #replace with your list of preferred charities (this script currently only uses charity name and JustGiving ID)
 
@@ -61,7 +60,6 @@ if (n=="E") {
   print{"sourcing effective, and a sample of all charities"}
   source("R/just_giving_data_pull_sampler.R") #recoded version of the above, to get fundraisers for all effective charities and a (?sample) of other charities
 }
-
 
 #Performs the randomisation, outputs a file listing all new treatment groups, and saves the current state of experimental pages
 source("R/get_current_state_and_randomise.R")
