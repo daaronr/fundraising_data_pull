@@ -48,7 +48,7 @@ get_charity_fundraising_pages_sample <- function(charity_name, id){
   if(charity_search_response$Total == 0){
     return(NULL)
   }
-  fundraisers_data <- charity_search_response[['GroupedResults']][[1]][['Results']] %>%
+fundraisers_data <- charity_search_response[['GroupedResults']][[1]][['Results']] %>%
     map(list_to_tibble) %>%
     reduce(bind_rows)%>%
     mutate(charity = charity_name,
@@ -57,7 +57,8 @@ get_charity_fundraising_pages_sample <- function(charity_name, id){
   return(fundraisers_data)
 }
 
-#This takes a fundraisers id and gets the data for it (a single row of info)
+
+#This takes a fundraiser's id and gets the data for it (a single row of info)
 get_fundraising_data <- function(fundraiser_id){
   print(paste('Getting data for fundraiser with id', fundraiser_id))
   fundraiser <- try(paste('/v1/fundraising/pagebyid/',fundraiser_id, sep = '') %>%
