@@ -35,29 +35,30 @@ write.csv(fundraiser_search_data_s, "data/temp_downloads_data/fundraiser_search_
 
 #TODO: adjust this to cap the 'earliest date' to a consistent measure for all charities (based on the youngest earliest data that the 9999 restriction yields) 
     
-#Take a sample of 20,000 fundraisers (non-effective coded as ad_hoc_david==9) plus all the effective ones
-fundraiser_search_data_s_20k <- fundraiser_search_data_s %>%
+#Take a sample of 10,000 fundraisers (non-effective coded as ad_hoc_david==9) plus all the effective ones
+fundraiser_search_data_s_10k <- fundraiser_search_data_s %>%
   filter(ad_hoc_david==9) %>%
-  sample_n(20000) %>% 
+  sample_n(10000) %>% 
   bind_rows(filter(fundraiser_search_data_s, (ad_hoc_david!=9|is.na(ad_hoc_david))))
-write.csv(fundraiser_search_data_s_20k, "data/temp_downloads_data/fundraiser_search_data_s_20k.csv")
+
+write.csv(fundraiser_search_data_s_10k, "data/temp_downloads_data/fundraiser_search_data_s_10k.csv")
 
  #bind in charity_data_s by charity_name to distinguish effective/ineffective 
 
 #Get info about the fundraisers
-fundraising_page_data_s_20K <-
-  map(fundraiser_search_data_s_20k$Id, get_fundraising_data) 
+fundraising_page_data_s_10K_list <-
+  map(fundraiser_search_data_s_10k$Id, get_fundraising_data) 
 
-fundraising_page_data_s_20Kt <- fundraising_page_data_s_20K %>%
-  reduce(bind_rows) %>%
-write.csv(fundraising_page_data_s_20K, "data/temp_downloads_data/fundraising_page_data_s_20k.csv")
+fundraising_page_data_s_10Kt <- fundraising_page_data_s_10K_list %>%
+  reduce(bind_rows) 
 
+write.csv(fundraising_page_data_s_10Kt, "data/temp_downloads_data/fundraising_page_data_s_10k.csv")
 
 #note: broken up into multiple steps because of slow processing
 
-fundraising_page_data_s_20K <- fundraising_page_data_s_20Kt %>%  
+fundraising_page_data_s_10k <- fundraising_page_data_s_10Kt %>%  
   as.tibble() %>%
-  left_join(fundraiser_search_data_s_20k, by = c('pageId' = 'Id')) %>%
+  left_join(fundraiser_search_data_s_10k, by = c('pageId' = 'Id')) %>%
   # TRIMMED because this now seems to drop everything: 
   #dplyr::filter(unlist(Map(function(x, y) grepl(x, y), searched_charity_id, charity.registrationNumber))) %>% #match the 'regno' ... if it is *present* in the other variable (some give several regno's) 
   select(-grep('image.', names(.))) %>%
@@ -66,15 +67,16 @@ fundraising_page_data_s_20K <- fundraising_page_data_s_20Kt %>%
   mutate(date_downloaded = Sys.time()) 
 
 ## tab and get charityid -- these are then entered into the charity sheet manually
+## <!-- #TODO -- explain this better; what was this? -->
 Mode <- function(x) {
   ux <- unique(x)
   ux[which.max(tabulate(match(x, ux)))]
 }
-fundraising_page_data_s_20k %>% group_by(charity.name) %>% summarise(N=n(), mode.charity.id=Mode(charity.id)) %>% arrange(desc(N)) %>% print(,n=20)
+fundraising_page_data_s_10k %>% group_by(charity.name) %>% summarise(N=n(), mode.charity.id=Mode(charity.id)) %>% arrange(desc(N)) %>% print(,n=10)
 
 #Get all current donations on the fundraising pages
-donation_data_s_20k <-
-  map(fundraising_page_data_s_20k$pageShortName, get_fundraiser_donations) %>%
+donation_data_s_10k <-
+  map(fundraising_page_data_s_10k$pageShortName, get_fundraiser_donations) %>%
   reduce(bind_rows) %>%
   mutate(date_downloaded = Sys.time())
 
@@ -83,10 +85,10 @@ dir.create(snapshots_folder, showWarnings = FALSE)
 dir.create(donations_folder, showWarnings = FALSE)
 dir.create(fundraisers_folder, showWarnings = FALSE)
 
-write_csv(fundraising_page_data_s_20k, current_fundraisers_file_s)
-write_csv(donation_data_s_20k, current_donations_file_s)
-write_rds(fundraising_page_data_s_20k, current_fundraisers_file_s_rds)
-write_rds(donation_data_s_20k, current_donations_file_s_rds)
+write_csv(fundraising_page_data_s_10k, current_fundraisers_file_s)
+write_csv(donation_data_s_10k, current_donations_file_s)
+write_rds(fundraising_page_data_s_10k, current_fundraisers_file_s_rds)
+write_rds(donation_data_s_10k, current_donations_file_s_rds)
 
 #The code  below creates a table of data pull events. So that the most recents data is used and we retain a record of our behaviour
 this_data_pull <- data.frame(date, time)
