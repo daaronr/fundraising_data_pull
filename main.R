@@ -1,6 +1,14 @@
 library(pacman)
 
-p_load(dplyr,magrittr,purrr,tidyverse,tidyr,broom,janitor, here,glue,dataMaid,readr,lubridate,summarytools, httr,jsonlite,rlist,XML)
+p_load(dplyr,magrittr,purrr,tidyverse,tidyr,broom,janitor, here,glue,
+       dataMaid,readr,lubridate,summarytools, httr,jsonlite,rlist,XML, git2r)
+
+#Username for Git
+username <- readline(prompt = "Please enter your GitHub Username: ") 
+password <- readline(prompt = "Please enter your GitHub Password: ") 
+credentials <- cred_user_pass(username = username, password = password)
+
+git2r::pull()
 
 #Folder holding all the raw data and files that are created for the process
 data_folder <- 'data'
@@ -63,3 +71,11 @@ if (n=="E") {
 
 #Performs the randomisation, outputs a file listing all new treatment groups, and saves the current state of experimental pages
 source("R/get_current_state_and_randomise.R")
+
+#Commit changes
+git2r::commit(message = as.character(Sys.Date()), all = TRUE)
+
+#Push changes
+git2r::push(object = getwd(),
+            credentials = cred_user_pass(username = username,
+                                         password = password))
