@@ -6,7 +6,6 @@ p_load(dplyr,magrittr,purrr,tidyverse,tidyr,broom,janitor, here,glue,
 #Username for Git
 username <- readline(prompt = "Please enter your GitHub Username: ") 
 password <- readline(prompt = "Please enter your GitHub Password: ") 
-credentials <- cred_user_pass(username = username, password = password)
 
 git2r::pull()
 
@@ -71,6 +70,11 @@ if (n=="E") {
 
 #Performs the randomisation, outputs a file listing all new treatment groups, and saves the current state of experimental pages
 source("R/get_current_state_and_randomise.R")
+
+#Stage changes
+add( repo = getwd()
+     , path = "fundraising_data_pull"
+)
 
 #Commit changes
 git2r::commit(message = as.character(Sys.Date()), all = TRUE)
