@@ -3,10 +3,14 @@ library(pacman)
 p_load(dplyr,magrittr,purrr,tidyverse,tidyr,broom,janitor, here,glue,
        dataMaid,readr,lubridate,summarytools, httr,jsonlite,rlist,XML, git2r)
 
+#git2r: package for using git with R
+#https://rpubs.com/chrimaho/GitHubAutomation
+
 #Username for Git
 username <- readline(prompt = "Please enter your GitHub Username: ") 
 password <- readline(prompt = "Please enter your GitHub Password: ") 
 
+#Avoid merge conflicts
 git2r::pull()
 
 #Folder holding all the raw data and files that are created for the process
@@ -72,7 +76,7 @@ if (n=="E") {
 source("R/get_current_state_and_randomise.R")
 
 #Stage changes
-add( repo = getwd()
+git2r::add( repo = getwd()
      , path = "fundraising_data_pull"
 )
 
