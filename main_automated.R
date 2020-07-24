@@ -8,6 +8,9 @@ p_load(dplyr,magrittr,purrr,tidyverse,tidyr,broom,janitor, here,glue,
        dataMaid,readr,lubridate,summarytools, httr,jsonlite,rlist,XML, git2r,
        taskscheduleR) #git2r is new
 
+#Set working directory
+setwd() <- here::here()
+
 #Username for Git
 #TODO: separate account to use the password for
 
