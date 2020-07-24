@@ -1,5 +1,5 @@
 #### Script for running pull every 24 hours ####
-
+rm(list=ls())
 #### Load packages ####
 
 library(pacman)
@@ -9,10 +9,10 @@ p_load(dplyr,magrittr,purrr,tidyverse,tidyr,broom,janitor, here,glue,
        taskscheduleR) #git2r is new
 
 #Username for Git
-#TODO: seperate account to use the password for
+#TODO: separate account to use the password for
 
-username <- readline(prompt = "Please enter your GitHub Username: ")
-password <- readline(prompt = "Please enter your GitHub Password: ")
+username <- "fundraising_data_pull@outlook.com"
+password <- "justgiving_api1"
 
 #### Pull in the repo based in the working directory (to avoid merge conflicts) ####
 
@@ -59,7 +59,7 @@ current_donations_file_s_rds <- file.path(donations_folder, donations_file_s_rds
 current_fundraisers_file_s <- file.path(fundraisers_folder, fundraisers_file_s)
 current_fundraisers_file_s_rds <- file.path(fundraisers_folder, fundraisers_file_s_rds)
 
-all_experimental_pag]es <- file.path(data_folder, 'experimental_pages.csv')
+all_experimental_pages <- file.path(data_folder, 'experimental_pages.csv')
 table_of_data_pulls <- file.path(data_folder, 'data_pulls.csv')
 treatments_file <- file.path(data_folder, 'treatments.csv')
 current_experimental_donation_state_path <- file.path(data_folder, 'donations_to_experimental_pages.csv')
