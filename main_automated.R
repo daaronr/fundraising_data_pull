@@ -9,7 +9,7 @@ p_load(dplyr,magrittr,purrr,tidyverse,tidyr,broom,janitor, here,glue,
        taskscheduleR) #git2r is new
 
 #Set working directory
-#setwd() <- here::here()
+setwd("\\\\isad.isadroot.ex.ac.uk/UOE/User/fundraising_data_pull")
 
 #Username for Git
 #TODO: separate account to use the password for
@@ -19,7 +19,7 @@ password <- "justgiving_api1"
 
 #### Pull in the repo based in the working directory (to avoid merge conflicts) ####
 
-git2r::pull()
+git2r::pull(repo = "\\\\isad.isadroot.ex.ac.uk/UOE/User/fundraising_data_pull")
 
 #### Folder and filename setup, bring in functions ####
 
@@ -77,17 +77,9 @@ source("R/functions.R")
 
 #TODO: remove user input section, decide on which subset we are using
 
-n <- readline("Do you want Effective charity fundraisers (E) or a Sample of all fundraisers? (E/S)")
+source("R/just_giving_data_pull.R")
 
-if (n=="E") {
-  #Downloads all current data for the target charities, also saves a snapshot
-  source("R/just_giving_data_pull.R")
-} else {
-  print{"sourcing effective, and a sample of all charities"}
-  source("R/just_giving_data_pull_sampler.R") #recoded version of the above, to get fundraisers for all effective charities and a (?sample) of other charities
-}
-
-#### Randomisation and 'treatment instruction output ####
+####Randomisation and 'treatment instruction output ####
 
 #Performs the randomisation, outputs a file listing all new treatment groups, and saves the current state of experimental pages
 source("R/get_current_state_and_randomise.R")
@@ -96,14 +88,15 @@ source("R/get_current_state_and_randomise.R")
 #### Stage, commit and push changes to the Repo to use on any computer ####
 
 #Stage changes
-git2r::add( repo = getwd()
+git2r::add(repo = "\\\\isad.isadroot.ex.ac.uk/UOE/User/fundraising_data_pull"
      , path = "fundraising_data_pull"
 )
 
 #Commit changes
-git2r::commit(message = as.character(Sys.Date()), all = TRUE)
+git2r::commit(repo = "\\\\isad.isadroot.ex.ac.uk/UOE/User/fundraising_data_pull",
+              message = as.character(Sys.Date()), all = TRUE)
 
 #Push changes
-git2r::push(object = getwd(),
+git2r::push(repo = "\\\\isad.isadroot.ex.ac.uk/UOE/User/fundraising_data_pull",
             credentials = cred_user_pass(username = username,
                                          password = password)  )
