@@ -9,7 +9,7 @@ p_load(dplyr,magrittr,purrr,tidyverse,tidyr,broom,janitor, here,glue,
        taskscheduleR) #git2r is new
 
 #Set working directory
-setwd() <- here::here()
+#setwd() <- here::here()
 
 #Username for Git
 #TODO: separate account to use the password for
@@ -87,7 +87,7 @@ if (n=="E") {
   source("R/just_giving_data_pull_sampler.R") #recoded version of the above, to get fundraisers for all effective charities and a (?sample) of other charities
 }
 
-#### Randomisation and 'treatment instruction output ####
+####Randomisation and 'treatment instruction output ####
 
 #Performs the randomisation, outputs a file listing all new treatment groups, and saves the current state of experimental pages
 source("R/get_current_state_and_randomise.R")
