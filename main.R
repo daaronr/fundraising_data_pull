@@ -1,24 +1,22 @@
-#### Script for running pull every 24 hours ####
-rm(list=ls())
-#### Load packages ####
+#### Load pacakages ####
 
 library(pacman)
 
 p_load(dplyr,magrittr,purrr,tidyverse,tidyr,broom,janitor, here,glue,
-       dataMaid,readr,lubridate,summarytools, httr,jsonlite,rlist,XML, git2r,
-       taskscheduleR) #git2r is new
+       dataMaid,readr,lubridate,summarytools, httr,jsonlite,rlist,XML, git2r) #git2r is new
 
-#Set working directory
-setwd() <- here::here()
+#git2r: package for using git with R
+#https://rpubs.com/chrimaho/GitHubAutomation
 
 #Username for Git
-#TODO: separate account to use the password for
+#TODO: seperate account to use the password for
 
-username <- "fundraising_data_pull@outlook.com"
-password <- "justgiving_api1"
+username <- readline(prompt = "Please enter your GitHub Username: ")
+password <- readline(prompt = "Please enter your GitHub Password: ")
 
 #### Pull in the repo based in the working directory (to avoid merge conflicts) ####
 
+#Avoid merge conflicts
 git2r::pull()
 
 #### Folder and filename setup, bring in functions ####
@@ -62,7 +60,7 @@ current_donations_file_s_rds <- file.path(donations_folder, donations_file_s_rds
 current_fundraisers_file_s <- file.path(fundraisers_folder, fundraisers_file_s)
 current_fundraisers_file_s_rds <- file.path(fundraisers_folder, fundraisers_file_s_rds)
 
-all_experimental_pages <- file.path(data_folder, 'experimental_pages.csv')
+all_experimental_pag]es <- file.path(data_folder, 'experimental_pages.csv')
 table_of_data_pulls <- file.path(data_folder, 'data_pulls.csv')
 treatments_file <- file.path(data_folder, 'treatments.csv')
 current_experimental_donation_state_path <- file.path(data_folder, 'donations_to_experimental_pages.csv')
@@ -96,7 +94,7 @@ source("R/get_current_state_and_randomise.R")
 #### Stage, commit and push changes to the Repo to use on any computer ####
 
 #Stage changes
-add( repo = getwd()
+git2r::add( repo = getwd()
      , path = "fundraising_data_pull"
 )
 
