@@ -96,7 +96,7 @@ source("R/get_current_state_and_randomise.R")
 #### Stage, commit and push changes to the Repo to use on any computer ####
 
 #Stage changes
-add( repo = getwd()
+git2r::add( repo = getwd()
      , path = "fundraising_data_pull"
 )
 
