@@ -1,0 +1,16 @@
+date,datetime,donations_file_path,fundraisers_file_path
+2018-08-04,2018-08-04T17:58:03Z,data/just_giving_data_snapshots/donations/donations2018-08-04.csv,data/just_giving_data_snapshots/fundraisers/fundraisers2018-08-04.csv
+2018-08-04,2018-08-04T22:49:40Z,data/just_giving_data_snapshots/donations/donations2018-08-04.csv,data/just_giving_data_snapshots/fundraisers/fundraisers2018-08-04.csv
+2018-08-05,2018-08-05T08:58:52Z,data/just_giving_data_snapshots/donations/donations2018-08-05.csv,data/just_giving_data_snapshots/fundraisers/fundraisers2018-08-05.csv
+2018-08-06,2018-08-06T19:38:02Z,data/just_giving_data_snapshots/donations/donations2018-08-06.csv,data/just_giving_data_snapshots/fundraisers/fundraisers2018-08-06.csv
+2018-08-12,2018-08-12T16:28:31Z,data/just_giving_data_snapshots/donations/donations2018-08-12.csv,data/just_giving_data_snapshots/fundraisers/fundraisers2018-08-12.csv
+2018-09-21,2018-09-21T17:21:21Z,data/just_giving_data_snapshots/donations/donations2018-09-21.csv,data/just_giving_data_snapshots/fundraisers/fundraisers2018-09-21.csv
+2019-05-14,2019-05-14T22:28:42Z,data/just_giving_data_snapshots/donations/donations2019-05-14.csv,data/just_giving_data_snapshots/fundraisers/fundraisers2019-05-14.csv
+2020-04-05,2020-04-05T10:17:25Z,data/just_giving_data_snapshots/donations/donations2020-04-05.csv,data/just_giving_data_snapshots/fundraisers/fundraisers2020-04-05.csv
+2020-06-08,2020-06-08T20:20:41Z,NA,NA
+2020-06-09,2020-06-09T15:24:43Z,NA,NA
+2020-06-09,2020-06-09T15:31:11Z,NA,NA
+2020-06-09,2020-06-09T15:31:11Z,NA,NA
+2020-06-10,2020-06-10T16:18:55Z,NA,NA
+2020-06-10,2020-06-10T16:18:55Z,NA,NA
+2020-06-10,2020-06-10T16:18:55Z,data/just_giving_data_snapshots/donations/donations_s2020-06-10.csv,data/just_giving_data_snapshots/fundraisers/fundraisers_s2020-06-10.csv
