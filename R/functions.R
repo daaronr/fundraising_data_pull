@@ -16,7 +16,7 @@ list_to_tibble <- function(named_list, my_recursive = F){
   named_list %>%
     unlist(recursive = my_recursive) %>%
     as.data.frame.list %>%
-    as.tibble %>%
+    as_tibble %>%
     return
 }
 
