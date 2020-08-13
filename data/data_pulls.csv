@@ -10,3 +10,4 @@ date,datetime,donations_file_path,fundraisers_file_path
 2020-06-08,2020-06-08T20:20:41Z,NA,NA
 2020-06-08,2020-06-08T20:20:41Z,NA,NA
 2020-08-11,2020-08-11T15:31:19Z,data/just_giving_data_snapshots/donations/donations2020-08-11.csv,data/just_giving_data_snapshots/fundraisers/fundraisers2020-08-11.csv
+2020-08-13,2020-08-13T10:27:36Z,data/just_giving_data_snapshots/donations/donations2020-08-13.csv,data/just_giving_data_snapshots/fundraisers/fundraisers2020-08-13.csv
