@@ -20,6 +20,8 @@ password <- "justgiving_api1"
 #### Pull in the repo based in the working directory (to avoid merge conflicts) ####
 
 git2r::pull(repo = "\\\\isad.isadroot.ex.ac.uk/UOE/User/fundraising_data_pull")
+detach("package:git2r", unload = TRUE)
+
 
 #### Folder and filename setup, bring in functions ####
 
@@ -86,6 +88,7 @@ source("R/get_current_state_and_randomise.R")
 
 
 #### Stage, commit and push changes to the Repo to use on any computer ####
+library(git2r)
 
 #Stage changes
 git2r::add(repo = "\\\\isad.isadroot.ex.ac.uk/UOE/User/fundraising_data_pull"
@@ -97,6 +100,6 @@ git2r::commit(repo = "\\\\isad.isadroot.ex.ac.uk/UOE/User/fundraising_data_pull"
               message = as.character(Sys.Date()), all = TRUE)
 
 #Push changes
-git2r::push(repo = "\\\\isad.isadroot.ex.ac.uk/UOE/User/fundraising_data_pull",
+git2r::push(object = "\\\\isad.isadroot.ex.ac.uk/UOE/User/fundraising_data_pull",
             credentials = cred_user_pass(username = username,
                                          password = password)  )
