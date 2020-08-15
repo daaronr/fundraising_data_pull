@@ -1,0 +1,126 @@
+Warning message:
+package 'pacman' was built under R version 4.0.2 
+Error in setwd() <- here::here() : invalid (NULL) left side of assignment
+Execution halted
+Warning message:
+package 'pacman' was built under R version 4.0.2 
+Error in setwd() <- here::here() : invalid (NULL) left side of assignment
+Execution halted
+Warning message:
+package 'pacman' was built under R version 4.0.2 
+Error in setwd() <- here::here() : invalid (NULL) left side of assignment
+Execution halted
+Warning message:
+package 'pacman' was built under R version 4.0.2 
+Error in lookup_repository(repo) : 
+  The working directory is not in a git repository
+Calls: <Anonymous> -> lookup_repository
+Execution halted
+Warning message:
+package 'pacman' was built under R version 4.0.2 
+Error in lookup_repository(repo) : 
+  The working directory is not in a git repository
+Calls: <Anonymous> -> lookup_repository
+Execution halted
+Warning message:
+package 'pacman' was built under R version 4.0.2 
+Already up-to-date
+Error in file(filename, "r", encoding = encoding) : 
+  cannot open the connection
+Calls: source -> source -> file
+In addition: Warning message:
+In file(filename, "r", encoding = encoding) :
+  cannot open file 'my_app_id.R': No such file or directory
+Execution halted
+Warning message:
+package 'pacman' was built under R version 4.0.2 
+Already up-to-date
+Do you want Effective charity fundraisers (E) or a Sample of all fundraisers? (E/S)
+Error: unexpected '{' in:
+"} else {
+  print{"
+Execution halted
+Warning message:
+package 'pacman' was built under R version 4.0.2 
+Already up-to-date
+Parsed with column specification:
+cols(
+  charity_name = col_character(),
+  regno = col_double(),
+  justgiving_id = col_double(),
+  cause_area = col_character(),
+  eaf = col_double(),
+  give_well_top_2017 = col_character(),
+  give_well_standout_2017 = col_double(),
+  life_you_can_save = col_double(),
+  ace = col_double(),
+  givewell_other = col_double(),
+  ad_hoc_david = col_double()
+)
+[1] "Searching for fundraisers for: Macmillan Cancer Support"
+Error in content(., as = "parsed") : unused argument (as = "parsed")
+Calls: source ... eval -> _fseq -> freduce -> withVisible -> <Anonymous>
+Execution halted
+Warning message:
+package 'pacman' was built under R version 4.0.2 
+Already up-to-date
+Parsed with column specification:
+cols(
+  charity_name = col_character(),
+  regno = col_double(),
+  justgiving_id = col_double(),
+  cause_area = col_character(),
+  eaf = col_double(),
+  give_well_top_2017 = col_character(),
+  give_well_standout_2017 = col_double(),
+  life_you_can_save = col_double(),
+  ace = col_double(),
+  givewell_other = col_double(),
+  ad_hoc_david = col_double()
+)
+[1] "Searching for fundraisers for: Animal Equality"
+Error in content(., as = "parsed") : unused argument (as = "parsed")
+Calls: source ... eval -> _fseq -> freduce -> withVisible -> <Anonymous>
+Execution halted
+Warning message:
+package 'pacman' was built under R version 4.0.2 
+Already up-to-date
+Parsed with column specification:
+cols(
+  charity_name = col_character(),
+  regno = col_double(),
+  justgiving_id = col_double(),
+  cause_area = col_character(),
+  eaf = col_double(),
+  give_well_top_2017 = col_character(),
+  give_well_standout_2017 = col_double(),
+  life_you_can_save = col_double(),
+  ace = col_double(),
+  givewell_other = col_double(),
+  ad_hoc_david = col_double()
+)
+[1] "Searching for fundraisers for: Animal Equality"
+Error in return(., data) : multi-argument returns are not permitted
+Calls: source ... eval -> _fseq -> freduce -> withVisible -> <Anonymous>
+Execution halted
+Warning message:
+package 'pacman' was built under R version 4.0.2 
+Already up-to-date
+Parsed with column specification:
+cols(
+  charity_name = col_character(),
+  regno = col_double(),
+  justgiving_id = col_double(),
+  cause_area = col_character(),
+  eaf = col_double(),
+  give_well_top_2017 = col_character(),
+  give_well_standout_2017 = col_double(),
+  life_you_can_save = col_double(),
+  ace = col_double(),
+  givewell_other = col_double(),
+  ad_hoc_david = col_double()
+)
+[1] "Searching for fundraisers for: Animal Equality"
+Error in return(., data) : multi-argument returns are not permitted
+Calls: source ... eval -> _fseq -> freduce -> withVisible -> <Anonymous>
+Execution halted
