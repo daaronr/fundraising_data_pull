@@ -11,6 +11,9 @@ p_load(dplyr,magrittr,purrr,tidyverse,tidyr,broom,janitor, here,glue,
 #Set working directory
 setwd("\\\\isad.isadroot.ex.ac.uk/UOE/User/fundraising_data_pull")
 
+#Set repo
+repo <- "\\\\isad.isadroot.ex.ac.uk/UOE/User/fundraising_data_pull"
+
 #Username for Git
 #TODO: separate account to use the password for
 
@@ -91,15 +94,22 @@ source("R/get_current_state_and_randomise.R")
 library(git2r)
 
 #Stage changes
-git2r::add(repo = "\\\\isad.isadroot.ex.ac.uk/UOE/User/fundraising_data_pull"
-     , path = "fundraising_data_pull"
+git2r::add(repo, path = "fundraising_data_pull"
 )
 
+#Stage untracked files (new files which have been created)
+num <- unlist(git2r::status()$untracked)
+if (num > 0) {
+for (i in 1:length(unlist(git2r::status()$untracked))) {
+  git2r::add(repo, num[i])
+}
+}
+
 #Commit changes
-git2r::commit(repo = "\\\\isad.isadroot.ex.ac.uk/UOE/User/fundraising_data_pull",
+git2r::commit(repo,
               message = as.character(Sys.Date()), all = TRUE)
 
 #Push changes
-git2r::push(object = "\\\\isad.isadroot.ex.ac.uk/UOE/User/fundraising_data_pull",
+git2r::push(object = repo,
             credentials = cred_user_pass(username = username,
                                          password = password)  )
