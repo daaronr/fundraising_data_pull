@@ -34,3 +34,4 @@ date,datetime,donations_file_path,fundraisers_file_path
 2020-09-04,2020-09-04T08:00:08Z,data/just_giving_data_snapshots/donations/donations2020-09-04.csv,data/just_giving_data_snapshots/fundraisers/fundraisers2020-09-04.csv
 2020-09-05,2020-09-05T08:00:08Z,data/just_giving_data_snapshots/donations/donations2020-09-05.csv,data/just_giving_data_snapshots/fundraisers/fundraisers2020-09-05.csv
 2020-09-06,2020-09-06T08:00:09Z,data/just_giving_data_snapshots/donations/donations2020-09-06.csv,data/just_giving_data_snapshots/fundraisers/fundraisers2020-09-06.csv
+2020-09-07,2020-09-07T08:00:08Z,data/just_giving_data_snapshots/donations/donations2020-09-07.csv,data/just_giving_data_snapshots/fundraisers/fundraisers2020-09-07.csv
