@@ -1,8 +1,8 @@
-#Here are some awesome functions used by the rest of the code. 
+#Here are some awesome functions used by the rest of the code.
 #They are functional
 
 #This is a generic function that extracts data from the api using uri_end provided
-get_data_from_api <- function(uri_end, 
+get_data_from_api <- function(uri_end,
                                        host = 'api.justgiving.com',
                                        app_id = my_app_id){
   data <- paste('https://', host, app_id, uri_end, sep = '') %>%
@@ -40,22 +40,6 @@ get_charity_fundraising_pages <- function(charity_name, id){
   return(fundraisers_data)
 }
 
-get_charity_fundraising_pages_sample <- function(charity_name, id){
-  charity_search_name <- gsub(' ', '%20', charity_name)
-  uri <- paste('/v1/onesearch?q=', charity_search_name, '&i=Fundraiser&limit=9999', sep = '')
-  print(paste('Searching for fundraisers for:', charity_name))
-  charity_search_response <- get_data_from_api(uri)
-  if(charity_search_response$Total == 0){
-    return(NULL)
-  }
-fundraisers_data <- charity_search_response[['GroupedResults']][[1]][['Results']] %>%
-    map(list_to_tibble) %>%
-    reduce(bind_rows)%>%
-    mutate(charity = charity_name,
-           searched_charity_id = id)  %>%
-    filter(searched_charity_id==CharityId) #filter out where id's do not match ('justgiving_id')
-  return(fundraisers_data)
-}
 
 
 #This takes a fundraiser's id and gets the data for it (a single row of info)
