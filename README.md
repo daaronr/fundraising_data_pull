@@ -4,6 +4,17 @@ I (@daaronr) have adjusted it slightly (see commits) and I am using this to do d
 
 # Charity seeding experiment code and process
 
+## Files
+
+- *main_automated* version of main which the server uses to pull each day
+- *main.R* file for data pulls
+
+**R Folder:** 
+- *just_giving_data_pull_sampler.R* pulls the effective charities and takes a sample of the top 10.
+- *just_giving_data_pull.R* pulls data only on the effective charities.
+- *functions.R* defines functions for data pulls.
+- *get_current_state_and_randomise.R* defines the randomisation process, outputs a file listing all new treatment groups, and saves the current state
+
 ## How do I make the code run?
 
 DR: First you need to register and create an app id on JustGiving, and save this as in a file you call
