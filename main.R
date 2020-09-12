@@ -5,6 +5,9 @@ library(pacman)
 p_load(dplyr,magrittr,purrr,tidyverse,tidyr,broom,janitor, here,glue,
        dataMaid,readr,lubridate,summarytools, httr,jsonlite,rlist,XML, git2r) #git2r is new
 
+#git2r: package for using git with R
+#https://rpubs.com/chrimaho/GitHubAutomation
+
 #Username for Git
 #TODO: seperate account to use the password for
 
@@ -13,7 +16,9 @@ password <- readline(prompt = "Please enter your GitHub Password: ")
 
 #### Pull in the repo based in the working directory (to avoid merge conflicts) ####
 
+#Avoid merge conflicts
 git2r::pull()
+detach("package:git2r", unload = TRUE)
 
 #### Folder and filename setup, bring in functions ####
 
@@ -56,7 +61,7 @@ current_donations_file_s_rds <- file.path(donations_folder, donations_file_s_rds
 current_fundraisers_file_s <- file.path(fundraisers_folder, fundraisers_file_s)
 current_fundraisers_file_s_rds <- file.path(fundraisers_folder, fundraisers_file_s_rds)
 
-all_experimental_pag]es <- file.path(data_folder, 'experimental_pages.csv')
+all_experimental_pages <- file.path(data_folder, 'experimental_pages.csv')
 table_of_data_pulls <- file.path(data_folder, 'data_pulls.csv')
 treatments_file <- file.path(data_folder, 'treatments.csv')
 current_experimental_donation_state_path <- file.path(data_folder, 'donations_to_experimental_pages.csv')
@@ -81,16 +86,17 @@ if (n=="E") {
   source("R/just_giving_data_pull_sampler.R") #recoded version of the above, to get fundraisers for all effective charities and a (?sample) of other charities
 }
 
-#### Randomisation and 'treatment instruction output ####
+####Randomisation and 'treatment instruction output ####
 
 #Performs the randomisation, outputs a file listing all new treatment groups, and saves the current state of experimental pages
 source("R/get_current_state_and_randomise.R")
 
 
 #### Stage, commit and push changes to the Repo to use on any computer ####
+library(git2r)
 
 #Stage changes
-add( repo = getwd()
+git2r::add( repo = getwd()
      , path = "fundraising_data_pull"
 )
 
