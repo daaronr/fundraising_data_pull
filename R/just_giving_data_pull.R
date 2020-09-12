@@ -1,9 +1,11 @@
-#This script downloads all current data for the target (effective) charities and the 'top-10' UK charities
+#just_giving_data_pull.R: This script downloads all current data for the target (effective) charities and the 'top-10' UK charities
+
+#(note: a file with the same name was previously doing only the effective charities)
+
 #It also saves a snapshot
 
 #Get table of target charities
 charity_data_s <- charities_csv_sample %>%
-# charity_data_s <- file.path(data_folder, 'charity_sample_2only.csv') %>%
   read_csv %>%
   drop_na(charity_name)
 

@@ -32,9 +32,10 @@ detach("package:git2r", unload = TRUE)
 data_folder <- 'data'
 
 #File that lists the target charities with their ids
-charities_csv <- file.path(data_folder, 'effective_charities.csv') #replace with your list of preferred charities (this script currently only uses charity name and JustGiving ID)
+charities_csv <- file.path(data_folder , 'effective_charities.csv') #replace with your list of preferred charities (this script currently only uses charity name and JustGiving ID)
 
 charities_csv_sample <- file.path(data_folder, 'charity_sample.csv')
+# This adds effective and otp-10 charities
 # 1 Apr 2020: I quickly constructed this by adding from the list here: https://yougov.co.uk/ratings/politics/popularity/charities-organisations/all, selecting from the top-10 charities only
 
 #A folder that contains all the fundraising and donation data, a new copy each time the code is run
@@ -82,7 +83,7 @@ source("R/functions.R")
 
 #TODO: remove user input section, decide on which subset we are using
 
-source("R/just_giving_data_pull_sampler.R")
+source("R/just_giving_data_pull.R")
 
 ####Randomisation and 'treatment instruction output ####
 
