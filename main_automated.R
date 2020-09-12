@@ -82,7 +82,7 @@ source("R/functions.R")
 
 #TODO: remove user input section, decide on which subset we are using
 
-source("R/just_giving_data_pull.R")
+source("R/just_giving_data_pull_sampler.R")
 
 ####Randomisation and 'treatment instruction output ####
 
