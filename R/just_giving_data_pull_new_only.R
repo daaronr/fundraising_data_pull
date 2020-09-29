@@ -1,4 +1,5 @@
 #### Code for pulling in pages created since the last pull ####
+start_time <- Sys.time()
 
 fundraising_folder <- file.path('data', 'just_giving_data_snapshots','fundraisers')
 
@@ -25,7 +26,8 @@ fundraiser_search_data_all <- fundraiser_search_data_all %>%
   left_join(charity_data_s, by="charity_name")
 
 #Filter for pages which have been created since the last data pull was conducted
-fundraiser_search_data_all %>% filter(CreatedDate >= last_pull)
+fundraiser_search_data_all <- fundraiser_search_data_all %>% 
+  filter(CreatedDate >= last_pull)
 
 #temp: intermediate exports because the process takes so long:
 intermed_folder <- file.path(data_folder, 'temp_downloads_data')
@@ -92,7 +94,6 @@ if(file.exists(table_of_data_pulls)){
 } else(data_pulls <- this_data_pull)
 write_csv(data_pulls, table_of_data_pulls)
 
-
-
-
-
+end_time <- Sys.time()
+duration <- end_time - start_time
+print(duration)
