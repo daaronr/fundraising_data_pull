@@ -82,11 +82,11 @@ write_rds(fundraising_page_data_all, current_fundraisers_file_s_rds)
 write_rds(donation_data_all, current_donations_file_s_rds)
 
 #The code below creates a table of data pull events. So that the most recents data is used and we retain a record of our behaviour
-this_data_pull <- data.frame(date, time)
-names(this_data_pull) <- c('date', 'datetime')
-this_data_pull <- this_data_pull %>%
-  mutate(donations_file_path = current_donations_file_sample,
-         fundraisers_file_path = current_fundraisers_file_sample)
+# this_data_pull <- data.frame(date, time)
+# names(this_data_pull) <- c('date', 'datetime')
+# this_data_pull <- this_data_pull %>%
+#   mutate(donations_file_path = current_donations_file_sample,
+#          fundraisers_file_path = current_fundraisers_file_sample)
 
 if(file.exists(table_of_data_pulls)){
   data_pulls <- read_csv(table_of_data_pulls)
