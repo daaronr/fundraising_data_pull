@@ -88,11 +88,11 @@ write_rds(donation_data_all, current_donations_file_s_rds)
 #   mutate(donations_file_path = current_donations_file_sample,
 #          fundraisers_file_path = current_fundraisers_file_sample)
 
-if(file.exists(table_of_data_pulls)){
-  data_pulls <- read_csv(table_of_data_pulls)
-  data_pulls <- bind_rows(data_pulls, this_data_pull)
-} else(data_pulls <- this_data_pull)
-write_csv(data_pulls, table_of_data_pulls)
+# if(file.exists(table_of_data_pulls)){
+#   data_pulls <- read_csv(table_of_data_pulls)
+#   data_pulls <- bind_rows(data_pulls, this_data_pull)
+# } else(data_pulls <- this_data_pull)
+# write_csv(data_pulls, table_of_data_pulls)
 
 end_time <- Sys.time()
 duration <- end_time - start_time
