@@ -1,0 +1,14 @@
+Warning message:
+package 'pacman' was built under R version 4.0.2 
+Already up-to-date
+Error in file.path("C:/Windows/System32", ...) : 
+  object 'fundraisers_folder' not found
+Calls: source ... eval -> file.exists -> here -> <Anonymous> -> file.path
+Execution halted
+Warning message:
+package 'pacman' was built under R version 4.0.2 
+Already up-to-date
+Error in file.path("C:/Windows/System32", ...) : 
+  object 'fundraisers_folder' not found
+Calls: source ... eval -> file.exists -> here -> <Anonymous> -> file.path
+Execution halted
