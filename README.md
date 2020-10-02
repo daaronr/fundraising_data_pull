@@ -4,6 +4,10 @@ I (@daaronr) have adjusted it slightly (see commits) and I am using this to do d
 
 # Charity seeding experiment code and process
 
+## Pulls
+Currently the pulls are setup as follows:
+- *pull_new_pages.R* pulls data for new pages only. New pages are pages where the created date >= date of the last pull. This pull is running twice a day 12 hours apart.
+
 ## Files
 
 - *main_automated* version of main which the server uses to pull each day
@@ -12,8 +16,10 @@ I (@daaronr) have adjusted it slightly (see commits) and I am using this to do d
 **R Folder:** 
 - *just_giving_data_pull_sampler.R* pulls the effective charities and takes a sample of the top 10 (redundant?).
 - *just_giving_data_pull.R* pulls data on the effective and top 10.
+- *just_giving_data_pull_new_only.R* pulls data on the new fundraisers only.
 - *functions.R* defines functions for data pulls.
 - *get_current_state_and_randomise.R* defines the randomisation process, outputs a file listing all new treatment groups, and saves the current state
+- *set_folders.R* sets the folders needed to run the pulls. Folders containing data are defined in this file. 
 
 ## How do I make the code run?
 
