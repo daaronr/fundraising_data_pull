@@ -31,7 +31,6 @@ fundraiser_search_data_all <- fundraiser_search_data_all %>%
 
 #temp: intermediate exports because the process takes so long:
 intermed_folder <- file.path(data_folder, 'temp_downloads_data')
-dir.create(intermed_folder)
 write.csv(fundraiser_search_data_all, "data/temp_downloads_data/fundraiser_search_data_all.csv")
 
 #bind in charity_data_s by charity_name to distinguish effective/ineffective
@@ -57,14 +56,6 @@ fundraising_page_data_all <- fundraising_page_data_all_t %>%
   select(-grep('branding.', names(.))) %>%
   mutate(date_downloaded = Sys.time())
 
-## tab and get charityid -- these are then entered into the charity sheet manually
-## <!-- #TODO -- explain this better; what was this? -->
-Mode <- function(x) {
-  ux <- unique(x)
-  ux[which.max(tabulate(match(x, ux)))]
-}
-fundraising_page_data_all %>% group_by(charity.name) %>% summarise(N=n(), mode.charity.id=Mode(charity.id)) %>% arrange(desc(N)) %>% print(,n=10)
-
 #Get all current donations on the fundraising pages
 donation_data_all <-
   map(fundraising_page_data_all$pageShortName, get_fundraiser_donations) %>%
@@ -76,10 +67,10 @@ dir.create(snapshots_folder, showWarnings = FALSE)
 dir.create(donations_folder, showWarnings = FALSE)
 dir.create(fundraisers_folder, showWarnings = FALSE)
 
-write_csv(fundraising_page_data_all, fundraisers_file_s)
-write_csv(donation_data_all, donations_file_s)
-write_rds(fundraising_page_data_all, fundraisers_file_s_rds)
-write_rds(donation_data_all, donations_file_s_rds)
+write_csv(fundraising_page_data_all, current_fundraisers_file_s)
+write_csv(donation_data_all, current_donations_file_s)
+write_rds(fundraising_page_data_all, current_fundraisers_file_s_rds)
+write_rds(donation_data_all, current_donations_file_s_rds)
 
 #The code below creates a table of data pull events. So that the most recents data is used and we retain a record of our behaviour
 # this_data_pull <- data.frame(date, time)

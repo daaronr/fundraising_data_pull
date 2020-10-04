@@ -33,6 +33,16 @@ fundraisers_file_s_rds <- paste('fundraisers_s', date, '.rds', sep = '')
 #File paths
 donations_folder <- file.path(snapshots_folder, 'donations')
 fundraisers_folder <- file.path(snapshots_folder, 'fundraisers')
+
+#As we are now doing two pulls a day we need to make sure our file names don't clash
+if(file.exists(here(fundraisers_folder, fundraisers_file_s))) {
+  donations_file_s <- paste('donations_s', date, '_', lubridate::hour(time), '.csv', sep = '')
+  donations_file_s_rds <- paste('donations_s', '_', date, lubridate::hour(time), '.rds', sep = '')
+  fundraisers_file_s <- paste('fundraisers_s', '_', date, lubridate::hour(time), '.csv', sep = '')
+  fundraisers_file_s_rds <- paste('fundraisers_s', '_', date, lubridate::hour(time), '.rds', sep = '')
+}
+
+#File paths
 current_donations_file <- file.path(donations_folder, donations_file)
 current_donations_file_rds <- file.path(donations_folder, donations_file_rds)
 current_fundraisers_file <- file.path(fundraisers_folder, fundraisers_file)
@@ -43,14 +53,6 @@ current_donations_file_s <- file.path(donations_folder, donations_file_s)
 current_donations_file_s_rds <- file.path(donations_folder, donations_file_s_rds)
 current_fundraisers_file_s <- file.path(fundraisers_folder, fundraisers_file_s)
 current_fundraisers_file_s_rds <- file.path(fundraisers_folder, fundraisers_file_s_rds)
-
-#As we are now doing two pulls a day we need to make sure our file names don't clash
-if(file.exists(here(fundraisers_folder, fundraisers_file_s))) {
-  donations_file_s <- paste('donations_s', date, '_', lubridate::hour(time), '.csv', sep = '')
-  donations_file_s_rds <- paste('donations_s', date, lubridate::hour(time), '.rds', sep = '')
-  fundraisers_file_s <- paste('fundraisers_s', date, lubridate::hour(time), '.csv', sep = '')
-  fundraisers_file_s_rds <- paste('fundraisers_s', date, lubridate::hour(time), '.rds', sep = '')
-}
 
 all_experimental_pages <- file.path(data_folder, 'experimental_pages.csv')
 table_of_data_pulls <- file.path(data_folder, 'data_pulls.csv')

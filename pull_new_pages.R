@@ -25,7 +25,6 @@ password <- "justgiving_api1"
 git2r::pull(repo = "\\\\isad.isadroot.ex.ac.uk/UOE/User/fundraising_data_pull")
 detach("package:git2r", unload = TRUE)
 
-
 #Setting file paths and folders
 source("R/set_folders.R")
 
@@ -40,12 +39,6 @@ source("R/functions.R")
 #TODO: remove user input section, decide on which subset we are using
 
 source("R/just_giving_data_pull_new_only.R")
-
-####Randomisation and 'treatment instruction output ####
-
-#Performs the randomisation, outputs a file listing all new treatment groups, and saves the current state of experimental pages
-source("R/get_current_state_and_randomise.R")
-
 
 #### Stage, commit and push changes to the Repo to use on any computer ####
 library(git2r)
