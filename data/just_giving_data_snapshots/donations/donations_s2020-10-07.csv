@@ -1,0 +1,2 @@
+amount,currencyCode,donationDate,donationRef.nil,donorDisplayName,donorLocalAmount,donorLocalCurrencyCode,id,source,thirdPartyReference.nil,charityId,pageShortName,date_downloaded
+5.0000,GBP,2020-10-06T08:44:56,true,Anonymous,5.000000,GBP,1059834649,SponsorshipDonations,true,183092,Alexia-Pop,2020-10-06T23:12:40Z
