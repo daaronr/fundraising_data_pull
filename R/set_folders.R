@@ -34,14 +34,6 @@ fundraisers_file_s_rds <- paste('fundraisers_s', date, '.rds', sep = '')
 donations_folder <- file.path(snapshots_folder, 'donations')
 fundraisers_folder <- file.path(snapshots_folder, 'fundraisers')
 
-#As we are now doing two pulls a day we need to make sure our file names don't clash
-if(file.exists(here(fundraisers_folder, fundraisers_file_s))) {
-  donations_file_s <- paste('donations_s', date, '_', lubridate::hour(time), '.csv', sep = '')
-  donations_file_s_rds <- paste('donations_s', '_', date, lubridate::hour(time), '.rds', sep = '')
-  fundraisers_file_s <- paste('fundraisers_s', '_', date, lubridate::hour(time), '.csv', sep = '')
-  fundraisers_file_s_rds <- paste('fundraisers_s', '_', date, lubridate::hour(time), '.rds', sep = '')
-}
-
 #File paths
 current_donations_file <- file.path(donations_folder, donations_file)
 current_donations_file_rds <- file.path(donations_folder, donations_file_rds)
