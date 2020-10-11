@@ -46,11 +46,11 @@ dir.create(snapshots_folder, showWarnings = FALSE)
 dir.create(donations_folder, showWarnings = FALSE)
 dir.create(fundraisers_folder, showWarnings = FALSE)
 
-write_csv(fundraising_page_data, current_fundraisers_file)
-write_csv(donation_data, current_donations_file)
+write_csv(fundraising_page_data, current_fundraisers_file_effective)
+write_csv(donation_data, current_donations_file_effective)
 #DR: I think we also want these saved as R files for our analysis; csv may lead to loss of data formats (or am I missing something?):
-write_rds(fundraising_page_data,current_fundraisers_file_rds)
-write_csv(donation_data, current_donations_file_rds)
+write_rds(fundraising_page_data,current_fundraisers_file_effective_rds)
+write_csv(donation_data, current_donations_file_effective_rds)
 
 #The code  below creates a table of data pull events. So that the most recents data is used and we retain a record of our behaviour
 this_data_pull <- data.frame(date, time)

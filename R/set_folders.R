@@ -24,6 +24,11 @@ donations_file_rds <- paste('donations', date, '.rds', sep = '')
 fundraisers_file <- paste('fundraisers', date, '.csv', sep = '')
 fundraisers_file_rds <- paste('fundraisers', date, '.rds', sep = '')
 
+donations_file_effective <- paste('donations_effective', date, '.csv', sep = '')
+donations_file_rds_effective <- paste('donations_effective', date, '.rds', sep = '')
+fundraisers_file_effective <- paste('fundraisers_effective', date, '.csv', sep = '')
+fundraisers_file_rds_effective <- paste('fundraisers_effective', date, '.rds', sep = '')
+
 #'_s' for 'sample' ... versions including top-10 non-effective
 donations_file_s <- paste('donations_s', date, '.csv', sep = '')
 donations_file_s_rds <- paste('donations_s', date, '.rds', sep = '')
@@ -40,6 +45,10 @@ current_donations_file_rds <- file.path(donations_folder, donations_file_rds)
 current_fundraisers_file <- file.path(fundraisers_folder, fundraisers_file)
 current_fundraisers_file_rds <- file.path(fundraisers_folder, fundraisers_file_rds)
 
+current_donations_file_effective <- file.path(donations_folder, donations_file_effective)
+current_donations_file_effective_rds <- file.path(donations_folder, donations_file_rds_effective)
+current_fundraisers_file_effective <- file.path(fundraisers_folder, fundraisers_file_effective)
+current_fundraisers_file_effective_rds <- file.path(fundraisers_folder, fundraisers_file_rds_effective)
 
 current_donations_file_s <- file.path(donations_folder, donations_file_s)
 current_donations_file_s_rds <- file.path(donations_folder, donations_file_s_rds)
