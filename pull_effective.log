@@ -15058,3 +15058,4 @@ package 'git2r' was built under R version 4.0.2
 Warning message:
 In if (num > 0) { :
   the condition has length > 1 and only the first element will be used
+[df4d8ae] 2020-10-11: New effective data 2020-10-11
