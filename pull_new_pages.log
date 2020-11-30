@@ -22192,3 +22192,4 @@ package 'git2r' was built under R version 4.0.2
 Warning message:
 In if (num > 0) { :
   the condition has length > 1 and only the first element will be used
+[cefea4f] 2020-11-30: New data 2020-11-30
