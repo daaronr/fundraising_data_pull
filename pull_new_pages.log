@@ -24867,3 +24867,146 @@ Warning message:
 In if (num > 0) { :
   the condition has length > 1 and only the first element will be used
 [fb9bd26] 2020-12-05: New data 2020-12-05
+Warning message:
+package 'pacman' was built under R version 4.0.2 
+Already up-to-date
+Parsed with column specification:
+cols(
+  charity_name = col_character(),
+  regno = col_double(),
+  justgiving_id = col_double(),
+  cause_area = col_character(),
+  eaf = col_double(),
+  give_well_top_2017 = col_character(),
+  give_well_standout_2017 = col_double(),
+  life_you_can_save = col_double(),
+  ace = col_double(),
+  givewell_other = col_double(),
+  ad_hoc_david = col_double()
+)
+[1] "Searching for fundraisers for: Macmillan Cancer Support"
+[1] "Searching for fundraisers for: St John Ambulance"
+[1] "Searching for fundraisers for: British Heart Foundation"
+[1] "Searching for fundraisers for: Guide Dogs"
+[1] "Searching for fundraisers for: Great Ormond Street Hospital"
+[1] "Searching for fundraisers for: Cancer Research UK"
+[1] "Searching for fundraisers for: Marie Curie"
+[1] "Searching for fundraisers for: RNLI - Royal National Lifeboat Institution"
+[1] "Searching for fundraisers for: Keep Britain Tidy"
+[1] "Searching for fundraisers for: WWF"
+[1] "Searching for fundraisers for: 80,000 Hours"
+[1] "Searching for fundraisers for: Against Malaria Foundation"
+[1] "Searching for fundraisers for: Albert-Schweitzer-Foundation"
+[1] "Searching for fundraisers for: Animal Charity Evaluators"
+[1] "Searching for fundraisers for: Animal Equality"
+[1] "Searching for fundraisers for: Animal Ethics"
+[1] "Searching for fundraisers for: Center for Applied Rationality"
+[1] "Searching for fundraisers for: Centre for Effective Altruism"
+[1] "Searching for fundraisers for: Cool Earth"
+[1] "Searching for fundraisers for: Development Media International"
+[1] "Searching for fundraisers for: END Fund - deworming program"
+[1] "Searching for fundraisers for: Evidence Action"
+[1] "Searching for fundraisers for: Food Fortification Initiative"
+[1] "Searching for fundraisers for: Future of Humanity Institute"
+[1] "Searching for fundraisers for: GAIN - Universal Salt Iodization program"
+[1] "Searching for fundraisers for: Georgetown University Initiative on Innovation, Development, and Evaluation ? Zusha! Road Safety Campaign"
+[1] "Searching for fundraisers for: GiveDirectly"
+[1] "Searching for fundraisers for: GiveWell"
+[1] "Searching for fundraisers for: Great Ape Project"
+[1] "Searching for fundraisers for: Humane Slaughter Association"
+[1] "Searching for fundraisers for: Iodine Global Network"
+[1] "Searching for fundraisers for: Living Goods"
+[1] "Searching for fundraisers for: Machine Intelligence Research Institute"
+[1] "Searching for fundraisers for: Malaria Consortium"
+[1] "Searching for fundraisers for: Mercy for Animals"
+[1] "Searching for fundraisers for: New Incentives"
+[1] "Searching for fundraisers for: Oxfam"
+[1] "Searching for fundraisers for: Project Healthy Children"
+[1] "Searching for fundraisers for: Schistosomiasis Control Initiative"
+[1] "Searching for fundraisers for: Sightsavers"
+[1] "Searching for fundraisers for: The Good Food Institute"
+[1] "Searching for fundraisers for: The Humane League"
+[1] "Searching for fundraisers for: Helen Keller International"
+[1] "Searching for fundraisers for: D-Rev"
+[1] "Searching for fundraisers for: Fistula Foundation"
+[1] "Searching for fundraisers for: Fred Hollows Foundation"
+[1] "Searching for fundraisers for: Innovations for Poverty Action"
+[1] "Searching for fundraisers for: Once Acre Fund"
+[1] "Searching for fundraisers for: Population Services International"
+[1] "Searching for fundraisers for: Possible-NOT-IDD"
+[1] "Searching for fundraisers for: SEVA"
+[1] "Searching for fundraisers for: Village Enterprise"
+[1] "Searching for fundraisers for: Global Fund To Fight Aids Tuberculosis And Malaria"
+[1] "Searching for fundraisers for: Gavi Alliance"
+[1] "Searching for fundraisers for: The Carter Center Inc"
+[1] "Searching for fundraisers for: Micronutrient Initiative Usa Inc"
+[1] "Searching for fundraisers for: Episcopal Relief"
+[1] "Searching for fundraisers for: Unicef UK"
+[1] "Searching for fundraisers for: Medecins Sans Frontieres (UK)"
+[1] "Searching for fundraisers for: No lean season"
+[1] "Searching for fundraisers for: Malaria No More"
+[1] "Searching for fundraisers for: WaterAid"
+[1] "Searching for fundraisers for: Care International UK"
+[1] "Getting data for fundraiser with id 13583777"
+[1] "Getting data for fundraiser with id 13584247"
+[1] "Getting data for fundraiser with id 13584452"
+[1] "Getting data for fundraiser with id 13584451"
+[1] "Getting data for fundraiser with id 13584249"
+[1] "Getting data for fundraiser with id 13584450"
+[1] "Getting data for fundraiser with id 13583398"
+[1] "Getting data for fundraiser with id 13583399"
+[1] "Getting donations from fundraiser with short name Danuta-Jeziorska"
+[1] "Getting donations from fundraiser with short name mr-abela"
+[1] "Getting donations from fundraiser with short name jack-weir2020"
+[1] "Getting donations from fundraiser with short name peter-ross2020"
+[1] "Getting donations from fundraiser with short name evertonjeff"
+[1] "Getting donations from fundraiser with short name bugg-1885"
+[1] "Getting donations from fundraiser with short name Danuta-Jeziorska2"
+[1] "Getting donations from fundraiser with short name Charlotte-August1"
+Time difference of 15.4 mins
+Warning messages:
+1: In if (class(fundraiser) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+2: In if (class(fundraiser) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+3: In if (class(fundraiser) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+4: In if (class(fundraiser) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+5: In if (class(fundraiser) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+6: In if (class(fundraiser) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+7: In if (class(fundraiser) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+8: In if (class(fundraiser) == "try-error") { :
+  the condition has length > 1 and only the first element will be used
+9: `as.tibble()` is deprecated as of tibble 2.0.0.
+Please use `as_tibble()` instead.
+The signature and semantics have changed, see `?as_tibble`.
+This warning is displayed once every 8 hours.
+Call `lifecycle::last_warnings()` to see where this warning was generated. 
+
+Attaching package: 'git2r'
+
+The following objects are masked from 'package:httr':
+
+    config, content
+
+The following objects are masked from 'package:purrr':
+
+    is_empty, when
+
+The following object is masked from 'package:magrittr':
+
+    add
+
+The following object is masked from 'package:dplyr':
+
+    pull
+
+Warning message:
+package 'git2r' was built under R version 4.0.2 
+Warning message:
+In if (num > 0) { :
+  the condition has length > 1 and only the first element will be used
