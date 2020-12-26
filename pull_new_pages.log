@@ -33408,3 +33408,223 @@ Warning message:
 In if (num > 0) { :
   the condition has length > 1 and only the first element will be used
 [95c1a9c] 2020-12-25: New data 2020-12-25
+Warning message:
+package 'pacman' was built under R version 4.0.2 
+Already up-to-date
+Parsed with column specification:
+cols(
+  charity_name = col_character(),
+  regno = col_double(),
+  justgiving_id = col_double(),
+  cause_area = col_character(),
+  eaf = col_double(),
+  give_well_top_2017 = col_character(),
+  give_well_standout_2017 = col_double(),
+  life_you_can_save = col_double(),
+  ace = col_double(),
+  givewell_other = col_double(),
+  ad_hoc_david = col_double()
+)
+[1] "Searching for fundraisers for: Macmillan Cancer Support"
+[1] "Searching for fundraisers for: St John Ambulance"
+[1] "Searching for fundraisers for: British Heart Foundation"
+[1] "Searching for fundraisers for: Guide Dogs"
+[1] "Searching for fundraisers for: Great Ormond Street Hospital"
+[1] "Searching for fundraisers for: Cancer Research UK"
+[1] "Searching for fundraisers for: Marie Curie"
+[1] "Searching for fundraisers for: RNLI - Royal National Lifeboat Institution"
+[1] "Searching for fundraisers for: Keep Britain Tidy"
+[1] "Searching for fundraisers for: WWF"
+[1] "Searching for fundraisers for: 80,000 Hours"
+[1] "Searching for fundraisers for: Against Malaria Foundation"
+[1] "Searching for fundraisers for: Albert-Schweitzer-Foundation"
+[1] "Searching for fundraisers for: Animal Charity Evaluators"
+[1] "Searching for fundraisers for: Animal Equality"
+[1] "Searching for fundraisers for: Animal Ethics"
+[1] "Searching for fundraisers for: Center for Applied Rationality"
+[1] "Searching for fundraisers for: Centre for Effective Altruism"
+[1] "Searching for fundraisers for: Cool Earth"
+[1] "Searching for fundraisers for: Development Media International"
+[1] "Searching for fundraisers for: END Fund - deworming program"
+[1] "Searching for fundraisers for: Evidence Action"
+[1] "Searching for fundraisers for: Food Fortification Initiative"
+[1] "Searching for fundraisers for: Future of Humanity Institute"
+[1] "Searching for fundraisers for: GAIN - Universal Salt Iodization program"
+[1] "Searching for fundraisers for: Georgetown University Initiative on Innovation, Development, and Evaluation ? Zusha! Road Safety Campaign"
+[1] "Searching for fundraisers for: GiveDirectly"
+[1] "Searching for fundraisers for: GiveWell"
+[1] "Searching for fundraisers for: Great Ape Project"
+[1] "Searching for fundraisers for: Humane Slaughter Association"
+[1] "Searching for fundraisers for: Iodine Global Network"
+[1] "Searching for fundraisers for: Living Goods"
+[1] "Searching for fundraisers for: Machine Intelligence Research Institute"
+[1] "Searching for fundraisers for: Malaria Consortium"
+[1] "Searching for fundraisers for: Mercy for Animals"
+[1] "Searching for fundraisers for: New Incentives"
+[1] "Searching for fundraisers for: Oxfam"
+[1] "Searching for fundraisers for: Project Healthy Children"
+[1] "Searching for fundraisers for: Schistosomiasis Control Initiative"
+[1] "Searching for fundraisers for: Sightsavers"
+[1] "Searching for fundraisers for: The Good Food Institute"
+[1] "Searching for fundraisers for: The Humane League"
+[1] "Searching for fundraisers for: Helen Keller International"
+[1] "Searching for fundraisers for: D-Rev"
+[1] "Searching for fundraisers for: Fistula Foundation"
+[1] "Searching for fundraisers for: Fred Hollows Foundation"
+[1] "Searching for fundraisers for: Innovations for Poverty Action"
+[1] "Searching for fundraisers for: Once Acre Fund"
+[1] "Searching for fundraisers for: Population Services International"
+[1] "Searching for fundraisers for: Possible-NOT-IDD"
+[1] "Searching for fundraisers for: SEVA"
+[1] "Searching for fundraisers for: Village Enterprise"
+[1] "Searching for fundraisers for: Global Fund To Fight Aids Tuberculosis And Malaria"
+[1] "Searching for fundraisers for: Gavi Alliance"
+[1] "Searching for fundraisers for: The Carter Center Inc"
+[1] "Searching for fundraisers for: Micronutrient Initiative Usa Inc"
+[1] "Searching for fundraisers for: Episcopal Relief"
+[1] "Searching for fundraisers for: Unicef UK"
+[1] "Searching for fundraisers for: Medecins Sans Frontieres (UK)"
+[1] "Searching for fundraisers for: No lean season"
+[1] "Searching for fundraisers for: Malaria No More"
+[1] "Searching for fundraisers for: WaterAid"
+[1] "Searching for fundraisers for: Care International UK"
+[1] "Getting data for fundraiser with id 13624760"
+[1] "Getting data for fundraiser with id 13627415"
+[1] "Getting data for fundraiser with id 13627514"
+[1] "Getting data for fundraiser with id 13627942"
+[1] "Getting data for fundraiser with id 13626868"
+[1] "Getting data for fundraiser with id 13626907"
+[1] "Getting data for fundraiser with id 13626520"
+[1] "Getting data for fundraiser with id 13626409"
+[1] "Getting data for fundraiser with id 13626414"
+[1] "Getting data for fundraiser with id 13627624"
+[1] "Getting data for fundraiser with id 13626511"
+[1] "Getting data for fundraiser with id 13627094"
+[1] "Getting data for fundraiser with id 13627306"
+[1] "Getting data for fundraiser with id 13627774"
+[1] "Getting data for fundraiser with id 13627820"
+[1] "Getting data for fundraiser with id 13627834"
+[1] "Getting data for fundraiser with id 13627934"
+[1] "Getting data for fundraiser with id 13627953"
+[1] "Getting data for fundraiser with id 13626522"
+[1] "Getting data for fundraiser with id 13627663"
+[1] "Getting data for fundraiser with id 13627726"
+[1] "Getting data for fundraiser with id 13627312"
+[1] "Getting data for fundraiser with id 13626531"
+[1] "Getting data for fundraiser with id 13627617"
+[1] "Getting data for fundraiser with id 13627186"
+[1] "Getting data for fundraiser with id 13626424"
+[1] "Getting data for fundraiser with id 13627640"
+[1] "Getting data for fundraiser with id 13627505"
+[1] "Getting data for fundraiser with id 13627416"
+[1] "Getting data for fundraiser with id 13626410"
+[1] "Getting data for fundraiser with id 13624367"
+[1] "Getting data for fundraiser with id 13626717"
+[1] "Getting data for fundraiser with id 13626525"
+[1] "Getting data for fundraiser with id 13626617"
+[1] "Getting data for fundraiser with id 13626620"
+[1] "Getting data for fundraiser with id 13626619"
+[1] "Getting data for fundraiser with id 13627208"
+[1] "Getting data for fundraiser with id 13627406"
+[1] "Getting data for fundraiser with id 13627380"
+[1] "Getting data for fundraiser with id 13627178"
+[1] "Getting data for fundraiser with id 13626408"
+[1] "Getting data for fundraiser with id 13627738"
+[1] "Getting data for fundraiser with id 13627384"
+[1] "Getting data for fundraiser with id 13626909"
+[1] "Getting data for fundraiser with id 13626863"
+[1] "Getting data for fundraiser with id 13626420"
+[1] "Getting data for fundraiser with id 13627411"
+[1] "Getting data for fundraiser with id 13627510"
+[1] "Getting data for fundraiser with id 13626911"
+[1] "Getting data for fundraiser with id 13627185"
+[1] "Getting data for fundraiser with id 13627313"
+[1] "Getting data for fundraiser with id 13627636"
+[1] "Getting data for fundraiser with id 13627108"
+[1] "Getting data for fundraiser with id 13627835"
+[1] "Getting data for fundraiser with id 13627846"
+[1] "Getting data for fundraiser with id 13626707"
+[1] "Getting data for fundraiser with id 13627405"
+[1] "Getting donations from fundraiser with short name Thomas-Chalmers"
+[1] "Getting donations from fundraiser with short name Kayleigh-Wood9"
+[1] "Getting donations from fundraiser with short name MadsPilcher"
+[1] "Getting donations from fundraiser with short name BHF100km-LukeHunter"
+[1] "Getting donations from fundraiser with short name geoffreysmithshepton"
+[1] "Getting donations from fundraiser with short name djzarajade-Jade"
+[1] "Getting donations from fundraiser with short name DanielleHaddon"
+[1] "Getting donations from fundraiser with short name Travis-Martin2"
+[1] "Getting donations from fundraiser with short name BreAnne-Graham"
+[1] "Getting donations from fundraiser with short name heartanniversary"
+[1] "Getting donations from fundraiser with short name Laura-Cherry97"
+[1] "Getting donations from fundraiser with short name sarahs-fundraising-page1000"
+[1] "Getting donations from fundraiser with short name jades-donation-page"
+[1] "Getting donations from fundraiser with short name kappas-fundraising-page-for-gosh"
+[1] "Getting donations from fundraiser with short name gillians-fundraising-page2021"
+[1] "Getting donations from fundraiser with short name marias-fundraising"
+[1] "Getting donations from fundraiser with short name vickys-running-off-christmas"
+[1] "Getting donations from fundraiser with short name running-off-christmas2021"
+[1] "Getting donations from fundraiser with short name AmarjitSahni"
+[1] "Getting donations from fundraiser with short name amandas-running-off-christmas"
+[1] "Getting donations from fundraiser with short name karens-fundraising-page1733"
+[1] "Getting donations from fundraiser with short name amys-page2021"
+[1] "Getting donations from fundraiser with short name TinaRobertson"
+[1] "Getting donations from fundraiser with short name running-for-kids2020"
+[1] "Getting donations from fundraiser with short name cheryls-running-off-christmas-for-gosh"
+[1] "Getting donations from fundraiser with short name Sarah-Webber20"
+[1] "Getting donations from fundraiser with short name vicki-and-als-running-off-christmas"
+[1] "Getting donations from fundraiser with short name Ayaan-D"
+[1] "Getting donations from fundraiser with short name patchworkthrowraffle"
+[1] "Getting donations from fundraiser with short name Yogi-Paul"
+[1] "Getting donations from fundraiser with short name Alex-Mannings-Reeves"
+[1] "Getting donations from fundraiser with short name Jessica-Bungay1"
+[1] "Getting donations from fundraiser with short name Rebekah-Nolan21"
+[1] "Getting donations from fundraiser with short name Gethin-Price1"
+[1] "Getting donations from fundraiser with short name George-Candlin"
+[1] "Getting donations from fundraiser with short name Nathan-Esson"
+[1] "Getting donations from fundraiser with short name SandyAirfieldDaffodils"
+[1] "Getting donations from fundraiser with short name Denis-Banton"
+[1] "Getting donations from fundraiser with short name EtapeCallyJane"
+[1] "Getting donations from fundraiser with short name EtapeCallyDerry"
+[1] "Getting donations from fundraiser with short name Sarah-Hanks3"
+[1] "Getting donations from fundraiser with short name TheBigWinterWander-HeatherBrailsford"
+[1] "Getting donations from fundraiser with short name TheBigWinterWander-JinkyWatt"
+[1] "Getting donations from fundraiser with short name Paul-Stewart32"
+[1] "Getting donations from fundraiser with short name pauls-giving-page-2290"
+[1] "Getting donations from fundraiser with short name marathon-a-month"
+[1] "Getting donations from fundraiser with short name 3nbr-unicef"
+[1] "Getting donations from fundraiser with short name Rumaina-Begum1"
+[1] "Getting donations from fundraiser with short name Andrew-Hill62"
+[1] "Getting donations from fundraiser with short name JustWater2021-HaiderAbbas"
+[1] "Getting donations from fundraiser with short name JustWater2021-BrendanRigby-Beckett"
+[1] "Getting donations from fundraiser with short name JustWater2021-JoeHilliard"
+[1] "Getting donations from fundraiser with short name JustWater2021-RebeccaGoldstein"
+[1] "Getting donations from fundraiser with short name JustWater2021-HannahWescombe"
+[1] "Getting donations from fundraiser with short name JustWater2021-ChelseaRaza"
+[1] "Getting donations from fundraiser with short name KyleSmith95"
+[1] "Getting donations from fundraiser with short name Kyle-Smith29"
+Time difference of 14.2239 mins
+There were 50 or more warnings (use warnings() to see the first 50)
+
+Attaching package: 'git2r'
+
+The following objects are masked from 'package:httr':
+
+    config, content
+
+The following objects are masked from 'package:purrr':
+
+    is_empty, when
+
+The following object is masked from 'package:magrittr':
+
+    add
+
+The following object is masked from 'package:dplyr':
+
+    pull
+
+Warning message:
+package 'git2r' was built under R version 4.0.2 
+Warning message:
+In if (num > 0) { :
+  the condition has length > 1 and only the first element will be used
