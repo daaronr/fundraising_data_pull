@@ -35798,3 +35798,8 @@ package 'git2r' was built under R version 4.0.2
 Warning message:
 In if (num > 0) { :
   the condition has length > 1 and only the first element will be used
+[2cb9b76] 2020-12-30: New data 2020-12-30
+Error in git2r::push(object = repo, credentials = cred_user_pass(username = username,  : 
+  Error in 'git2r_push': failed to write chunk header: The server returned an invalid or unrecognized response
+
+Execution halted
