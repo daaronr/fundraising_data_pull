@@ -121,3 +121,4 @@ date,datetime,donations_file_path,fundraisers_file_path
 2021-01-02,2021-01-02T08:00:09Z,data/just_giving_data_snapshots/donations/donations2021-01-02.csv,data/just_giving_data_snapshots/fundraisers/fundraisers2021-01-02.csv
 2021-01-03,2021-01-03T08:00:06Z,data/just_giving_data_snapshots/donations/donations2021-01-03.csv,data/just_giving_data_snapshots/fundraisers/fundraisers2021-01-03.csv
 2021-01-04,2021-01-04T08:00:07Z,data/just_giving_data_snapshots/donations/donations2021-01-04.csv,data/just_giving_data_snapshots/fundraisers/fundraisers2021-01-04.csv
+2021-01-05,2021-01-05T08:00:06Z,data/just_giving_data_snapshots/donations/donations2021-01-05.csv,data/just_giving_data_snapshots/fundraisers/fundraisers2021-01-05.csv
