@@ -9,7 +9,7 @@ p_load(dplyr,magrittr,purrr,tidyverse,tidyr,broom,janitor, here,glue,
        taskscheduleR) #git2r is new
 
 # Clear log file (otherwise this becomes too large for Git to handle)
-close( file( "pull_effective.log", open="w" ) )
+# close( file( "pull_effective.log", open="w" ) )
 
 #Set working directory
 setwd("\\\\isad.isadroot.ex.ac.uk/UOE/User/fundraising_data_pull")
