@@ -16,3 +16,12 @@ In addition: Warning message:
 In file("pull_effective.log", open = "w") :
   cannot open file 'pull_effective.log': Permission denied
 Execution halted
+Warning message:
+package 'pacman' was built under R version 4.0.2 
+Error in file("pull_effective.log", open = "w") : 
+  cannot open the connection
+Calls: close -> file
+In addition: Warning message:
+In file("pull_effective.log", open = "w") :
+  cannot open file 'pull_effective.log': Permission denied
+Execution halted
