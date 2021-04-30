@@ -82,7 +82,7 @@ if (n=="E") {
   #Downloads all current data for the target charities, also saves a snapshot
   source("R/just_giving_data_pull.R")
 } else {
-  print{"sourcing effective, and a sample of all charities"}
+  print("sourcing effective, and a sample of all charities")
   source("R/just_giving_data_pull_sampler.R") #recoded version of the above, to get fundraisers for all effective charities and a (?sample) of other charities
 }
 
