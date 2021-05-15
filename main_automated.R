@@ -5,7 +5,8 @@ rm(list=ls())
 library(pacman)
 
 p_load(dplyr,magrittr,purrr,tidyverse,tidyr,broom,janitor, here,glue,
-       dataMaid,readr,lubridate, httr,jsonlite,rlist,XML, git2r) #git2r is new
+       dataMaid,readr,lubridate, httr,jsonlite,rlist,XML, git2r,
+       install = FALSE) #git2r is new
 
 #Set working directory
 setwd(here())

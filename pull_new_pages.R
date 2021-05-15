@@ -5,14 +5,14 @@ rm(list=ls())
 library(pacman)
 
 p_load(dplyr,magrittr,purrr,tidyverse,tidyr,broom,janitor, here,glue,
-       dataMaid,readr,lubridate,summarytools, httr,jsonlite,rlist,XML, git2r,
-       taskscheduleR) #git2r is new
+       dataMaid,readr,lubridate, httr,jsonlite,rlist,XML, git2r,
+       install = FALSE) #git2r is new
 
 #Set working directory
-setwd("\\\\isad.isadroot.ex.ac.uk/UOE/User/fundraising_data_pull")
+setwd(here())
 
 #Set repo
-repo <- "\\\\isad.isadroot.ex.ac.uk/UOE/User/fundraising_data_pull"
+repo <- getwd()
 
 #Username for Git
 #TODO: separate account to use the password for
@@ -22,7 +22,7 @@ password <- "justgiving_api1"
 
 #### Pull in the repo based in the working directory (to avoid merge conflicts) ####
 
-git2r::pull(repo = "\\\\isad.isadroot.ex.ac.uk/UOE/User/fundraising_data_pull")
+git2r::pull(repo = repo)
 detach("package:git2r", unload = TRUE)
 
 #Setting file paths and folders

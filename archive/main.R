@@ -2,8 +2,8 @@
 
 library(pacman)
 
-p_load(dplyr,magrittr,purrr,tidyverse,tidyr,broom,janitor, here,glue,
-       dataMaid,readr,lubridate,summarytools, httr,jsonlite,rlist,XML, git2r) #git2r is new
+# p_load(dplyr,magrittr,purrr,tidyverse,tidyr,broom,janitor, here,glue,
+#        dataMaid,readr,lubridate,summarytools, httr,jsonlite,rlist,XML, git2r) #git2r is new
 
 #git2r: package for using git with R
 #https://rpubs.com/chrimaho/GitHubAutomation
