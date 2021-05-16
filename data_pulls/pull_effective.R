@@ -26,7 +26,7 @@ repo <- here()
 #### Pull in the repo based in the working directory (to avoid merge conflicts) ####
 
 # git2r::pull(repo = repo)
-# detach("package:git2r", unload = TRUE)
+detach("package:git2r", unload = TRUE)
 
 #Setting file paths and folders
 source("R/set_folders.R")
