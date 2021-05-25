@@ -8,7 +8,7 @@
 #TODO: Some pages funds are all raised offline: impute values for high_don, sum_don ?
 
 #Rename vars
-fdd_fd %<>% dplyr::rename(charity_created = activity_charity_created)
+fdd_fd <- fdd_fd %>% dplyr::rename(charity_created = activity_charity_created)
 
 #Drop empty factor levels
 fdd_fd <- droplevels(fdd_fd)
@@ -54,7 +54,7 @@ fdd_fd <- fdd_fd %>% mutate(activity_type = fct_recode(activity_type, "Charity A
                                                       "Medecins Sans Frontieres / Doctors Without Borders (MSF)" = "Médecins Sans Frontières (UK)"))#This should simplify our data a bit
 
 #Labeling
-  fdd_fd %<>%
+fdd_fd <- fdd_fd %>%
     sjlabelled::var_labels(
       activity_type = "The type of activity that the fundraiser involves.",
       charity_created = "Whether the fundraiser was set up by a registered charity or not.",

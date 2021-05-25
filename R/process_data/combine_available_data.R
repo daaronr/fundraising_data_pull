@@ -39,9 +39,7 @@ fundraisers_all <- fundraisers_all %>%
 
 #Filter old effective charities from original_effective_charities.csv
 orig_charity_sample <-
-  readr::read_csv(
-    "https://raw.githubusercontent.com/daaronr/fundraising_data_pull/master/data/effective_charities.csv"
-  )
+  readr::read_csv(here("data", "effective_charities.csv"))
 
 donations_all <- donations_all %>%
   left_join(orig_charity_sample, by = c("charity_id" = "justgiving_id")) %>%
@@ -91,10 +89,10 @@ fundraisers_all <-
       event_date,
       event_date > median(event_date) + years(20) |
         event_date < median(event_date) - years(20),
-      #Bit arbritrary
+      # Bit arbritrary
       NA
     ),
-    expiry_date = replace(expiry_date,  #Need to investigate this to decide the cut-off in a better way
+    expiry_date = replace(expiry_date,  # Need to investigate this to decide the cut-off in a better way
                           expiry_date >= "2050-01-01",
                           NA),
     fundraising_target = replace(
@@ -104,7 +102,7 @@ fundraisers_all <-
       NA
     )
   )
-#Code date variables
+# Code date variables
 fundraisers_all <- fundraisers_all %>%
   mutate(
     created_date = lubridate::ymd_hms(created_date),
@@ -155,51 +153,44 @@ donations_sum <- fundraisers_all %>%
 donations_sum <-
   donations_sum %>% group_by(page_short_name, donation_date) %>%
   mutate(
-    dur_cdate = as.numeric(as.duration(interval(
-      created_date, donation_date
-    )), "days"),
-    dur_edate = as.numeric(as.duration(interval(
-      donation_date, event_date
-    )), "days"),
+    dur_cdate = as.double(difftime(donation_date, created_date, units = "days")),
+    dur_edate = as.double(difftime(event_date, donation_date, units = "days")),
     dur_cd_95 = if_else((cumshare < 0.95), Inf, min(dur_cdate)),
-    dur_ed_95 = if_else((cumshare < 0.95), Inf, min(dur_edate))
-  ) %>%
-  sjlabelled::var_labels(
-    dur_cdate = "duration between page creation and 'this donation'",
-    dur_edate = "duration between 'this donation' and page's event date",
-    dur_cd_95 =  "dur. until 95pct of donations raised (I think)",
-    dur_cd_95 =  "time between 95pct of donations raised and end date (I think)"
-  ) %>%
-  ungroup() %>%
-  group_by(page_short_name) %>%
-  mutate(
-    don1_date = min(donation_date),
-    dur_dd1 = as.numeric(as.duration(interval(
-      don1_date, donation_date
-    )), "days"),
-    dur_dd1_11am = as.numeric(as.duration(
-      interval(floor_date(don1_date, unit = "day") + hours(11), donation_date)
-    ), "days"),
-    dur_dd1_10pm = as.numeric(as.duration(
-      interval(floor_date(don1_date, unit = "day") + hours(22), donation_date)
-    ), "days"),
-    don3_date = min(donation_date[donnum >= 3]),
-    don7_date = min(donation_date[donnum >= 7]),
-    dur_cd_3don = min(dur_cdate[donnum >= 3]),
-    dur_cd_7don = min(dur_cdate[donnum >= 7]),
-    dur_dd_7don = min(dur_dd1[donnum >= 7])
-  ) %>%
-   sjlabelled::var_labels(
-     dur_dd1 = "days between 'this donation' and first donation on page",
-    dur_dd1_11am = "days between first donation on page and 11am on page's first day",
-    dur_dd1_10pm = 
-      "days between first donation on page and 10pm on page's first day",
-    dur_dd_7don ="days between 1st and 7th  donation on page", 
-    don7_date = "date of donation 7",
-    dur_cd_7don = "days until 7 donations"
-  )
+    dur_ed_95 = if_else((cumshare < 0.95), Inf, min(dur_edate))) %>%
+    sjlabelled::var_labels(
+      dur_cdate = "duration between page creation and 'this donation'",
+      dur_edate = "duration between 'this donation' and page's event date",
+      dur_cd_95 =  "dur. until 95pct of donations raised (I think)",
+      dur_cd_95 =  "time between 95pct of donations raised and end date (I think)"
+    ) %>%
+    ungroup() %>%
+    group_by(page_short_name) %>%
+    mutate(
+      don1_date = min(donation_date),
+      dur_dd1 = as.double(difftime(
+        donation_date, don1_date,
+      ), "days"),
+      dur_dd1_11am = as.double(difftime(
+        donation_date, floor_date(don1_date, unit = "day") + hours(11)), "days"),
+      dur_dd1_10pm = as.double(difftime(
+        donation_date, floor_date(don1_date, unit = "day") + hours(22)), "days"),
+      don3_date = min(donation_date[donnum >= 3]),
+      don7_date = min(donation_date[donnum >= 7]),
+      dur_cd_3don = min(dur_cdate[donnum >= 3]),
+      dur_cd_7don = min(dur_cdate[donnum >= 7]),
+      dur_dd_7don = min(dur_dd1[donnum >= 7])
+    ) %>%
+    sjlabelled::var_labels(
+      dur_dd1 = "days between 'this donation' and first donation on page",
+      dur_dd1_11am = "days between first donation on page and 11am on page's first day",
+      dur_dd1_10pm = 
+        "days between first donation on page and 10pm on page's first day",
+      dur_dd_7don ="days between 1st and 7th  donation on page", 
+      don7_date = "date of donation 7",
+      dur_cd_7don = "days until 7 donations"
+    )
 
-#Median of time until 3, and until 7 donations
+#     Median of time until 3, and until 7 donations
 dur_to_x_don <- donations_sum %>%
   select(donnum, dur_cd_3don, dur_cd_7don, dur_dd_7don) %>%
   mutate(
@@ -214,7 +205,7 @@ dur_to_x_don <- donations_sum %>%
             p25_dur_7don = quantile(dur_cd_7don, 0.25, na.rm = TRUE),
             p25_dd_7don = quantile(dur_dd_7don, 0.25, na.rm = TRUE)
             ) %>%
-  var_labels(
+  sjlabelled::var_labels(
     med_dur_7don = "Median days to 7 donations",
     med_dur_dd_7don = "Median days from 1st to 7th donation",
     p25_dur_7don = "25th percentile days to 7 donations",
@@ -250,7 +241,7 @@ donations_sum <- donations_sum %>%
                ))]
     )
   )   %>%
-  var_labels(
+  sjlabelled::var_labels(
     cumsum_avgtime_to_3 = "donations after 1st don & before 'avg time to 3 total donations'",
     cumsum_avgtime_to_7 = "donations after 1st don & before 'avg time to 7 total donations'",
     cumsum_p25_dur_7don = "before '25th pctl time to 7 total donations'",
@@ -294,7 +285,7 @@ donations_sum <- donations_sum %>%
     cumsum_check = case_when(
       hour(don1_date) < 11  ~ cumsum_11am_d1,  hour(don1_date) >=11 & hour(don1_date) <22 ~ cumsum_10pm_d1, hour(don1_date) >= 22 ~ cumsum_11am_d2 ) #assign to *subsequent* check time
   ) %>%
-  var_labels(
+  sjlabelled::var_labels(
     cumsum_nextsix_lessfirst = "Sum of next 6 donations after first donation") %>%
 ungroup()
 
