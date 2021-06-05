@@ -1,0 +1,103 @@
+Error: unexpected symbol in "Rscript R"
+Execution halted
+here() starts at /root/Github/fundraising_data_pull
+── Attaching packages ─────────────────────────────────────── tidyverse 1.3.0 ──
+✔ ggplot2 3.3.3     ✔ purrr   0.3.4
+✔ tibble  3.1.1     ✔ dplyr   1.0.5
+✔ tidyr   1.1.3     ✔ stringr 1.4.0
+✔ readr   1.4.0     ✔ forcats 0.5.1
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+
+Attaching package: ‘lubridate’
+
+The following objects are masked from ‘package:base’:
+
+    date, intersect, setdiff, union
+
+
+Attaching package: ‘data.table’
+
+The following objects are masked from ‘package:lubridate’:
+
+    hour, isoweek, mday, minute, month, quarter, second, wday, week,
+    yday, year
+
+The following objects are masked from ‘package:dplyr’:
+
+    between, first, last
+
+The following object is masked from ‘package:purrr’:
+
+    transpose
+
+
+Attaching package: ‘assertthat’
+
+The following object is masked from ‘package:tibble’:
+
+    has_name
+
+[1] "Merging data for 05-2021"
+[1] "Merging data for 05-2021"
+
+-- Column specification --------------------------------------------------------
+cols(
+  amount = col_double(),
+  currency_code = col_character(),
+  donation_date = col_datetime(format = ""),
+  donor_display_name = col_character(),
+  donor_local_amount = col_double(),
+  donor_local_currency_code = col_character(),
+  estimated_tax_reclaim = col_double(),
+  id = col_double(),
+  message = col_character(),
+  source = col_character(),
+  charity_id = col_double(),
+  page_short_name = col_character(),
+  third_party_reference = col_character(),
+  date_downloaded = col_datetime(format = "")
+)
+
+
+-- Column specification --------------------------------------------------------
+cols(
+  .default = col_double(),
+  activity_charity_created = col_logical(),
+  activity_type = col_character(),
+  charity_description = col_character(),
+  charity_name = col_character(),
+  country_code = col_character(),
+  created_date = col_datetime(format = ""),
+  currency_code = col_character(),
+  date_downloaded = col_datetime(format = ""),
+  event_date = col_date(format = ""),
+  event_name = col_character(),
+  expiry_date = col_datetime(format = ""),
+  owner = col_character(),
+  page_short_name = col_character(),
+  page_summary = col_character(),
+  status = col_character()
+)
+i<U+00A0>Use `spec()` for the full column specifications.
+
+
+-- Column specification --------------------------------------------------------
+cols(
+  charity_name = col_character(),
+  regno = col_double(),
+  justgiving_id = col_double(),
+  cause_area = col_character(),
+  eaf = col_double(),
+  give_well_top_2017 = col_character(),
+  give_well_standout_2017 = col_double(),
+  life_you_can_save = col_double(),
+  ace = col_double(),
+  givewell_other = col_double(),
+  ad_hoc_david = col_double()
+)
+
+Adding missing grouping variables: `page_short_name`
+Time difference of 27.32724 mins
+There were 50 or more warnings (use warnings() to see the first 50)
