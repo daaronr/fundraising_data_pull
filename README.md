@@ -5,13 +5,16 @@ I (@daaronr) have adjusted it slightly (see commits) and I am using this to do d
 # Charity seeding experiment code and process
 
 ## Pulls
-Currently the pulls are setup as follows:
-- *pull_new_pages.R* pulls data for new pages only. New pages are pages where the created date >= date of the last pull. This pull is running twice a day 12 hours apart.
+-TODO
 
 ## Files
 
 - *main_automated* version of main which the server uses to pull each day
 - *main.R* file for data pulls
+
+**bash Folder:**
+- *data_munge.sh* combines data using R files from *R/process_data*
+- *pull_effective.sh* pulls data on new charities and pushes to Github
 
 **R Folder:** 
 - *just_giving_data_pull_sampler.R* pulls the effective charities and takes a sample of the top 10 (redundant?).
@@ -20,6 +23,13 @@ Currently the pulls are setup as follows:
 - *functions.R* defines functions for data pulls.
 - *get_current_state_and_randomise.R* defines the randomisation process, outputs a file listing all new treatment groups, and saves the current state
 - *set_folders.R* sets the folders needed to run the pulls. Folders containing data are defined in this file. 
+
+**R/process_data:**
+- *clean_data.R* performs some light column type adjustments and deals with some missing data
+- *combine_available_data.R* combines all the donation and fundraising data into 3 key dataframes which have summary statistics
+- *folder_funcs.R* defines functions which are used in *monthly_sum.R*
+- *main.R* ties together all R files in this folder
+- *monthly_sum.R* is a file to speedup the process of combining. Data on donations and fundaisers are aggregated by the month in which they were pulled and written to a total dataframe for the month. This removes the need to re-read and re-combine all past data when runnning *combine_available_data.R*. Instead only the monthly dataframes are combined, of which there are much fewer (around 20-30 instead of 300!). Note that *monthly_sum.R* will ignore previous months data but combine the current months.
 
 ## How do I make the code run?
 
