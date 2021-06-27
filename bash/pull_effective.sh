@@ -1,9 +1,10 @@
 #!/bin/bash
 
 # A script to pull data from effective charities
+Rscript data_pulls/pull_effective.R
 
-# Testing git push from command line
+# Push to Github
 GIT=`which git`
 ${GIT} add --all
-${GIT} commit -m "Test commit from bash script"
+${GIT} commit -m "Data pull effective: `date +'%Y-%m-%d'`"
 ${GIT} push
