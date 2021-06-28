@@ -1,23 +1,27 @@
 # FORK of Toby's original code to interact with the JustGiving API
 
 I (@daaronr) have adjusted it slightly (see commits) and I am using this to do data pulls and capture data used elsewhere.
+Adapted by Oska to  automate the process of data pulling and munging
+
+This should facilitate the actual running of the experiments.
 
 # Charity seeding experiment code and process
 
 ## Pulls
--TODO
+
+- TODO: set up code for periodic data pull
 
 ## Files
 
-- *main_automated* version of main which the server uses to pull each day
-- *main.R* file for data pulls
-
 **bash Folder:**
-- *data_munge.sh* combines data using R files from *R/process_data*
-- *pull_effective.sh* pulls data on new charities and pushes to Github
+- *pull_effective.sh* pulls data on new charities (data_pulls/pull_effective.R) and pushes to Github
+- *data_munge.sh* combines all data using R scripts (script from R/process_data/main.R, calling a bunch of other scripts); saves 3 RDS files 
 
 **R Folder:** 
-- *just_giving_data_pull_sampler.R* pulls the effective charities and takes a sample of the top 10 (redundant?).
+
+*Some of these may be used in the aforementioned scripts, or in scripts we will create... need to tidy up/organise* 
+
+- *just_giving_data_pull_sampler.R* ??pulls the effective charities and takes a sample of the top 10 (redundant?).
 - *just_giving_data_pull.R* pulls data on the effective and top 10.
 - *just_giving_data_pull_new_only.R* pulls data on the new fundraisers only.
 - *functions.R* defines functions for data pulls.
@@ -31,7 +35,7 @@ I (@daaronr) have adjusted it slightly (see commits) and I am using this to do d
 - *main.R* ties together all R files in this folder
 - *monthly_sum.R* is a file to speedup the process of combining. Data on donations and fundaisers are aggregated by the month in which they were pulled and written to a total dataframe for the month. This removes the need to re-read and re-combine all past data when runnning *combine_available_data.R*. Instead only the monthly dataframes are combined, of which there are much fewer (around 20-30 instead of 300!). Note that *monthly_sum.R* will ignore previous months data but combine the current months.
 
-## How do I make the code run?
+## How do I make the code run? [NEEDS UPDATING -- out of date]
 
 DR: First you need to register and create an app id on JustGiving, and save this as in a file you call
 a file "my_app_id.R", containing a single line of text
