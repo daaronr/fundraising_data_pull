@@ -21,8 +21,7 @@ fdd_fd <-
   fdd_fd %>%  mutate_at(.funs = list( ~ as.POSIXct(.)), .vars = vars(c(
     "event_date", "expiry_date", "created_date"
   ))) %>%
-  mutate_at( ~ factor(.), .vars = vars(c("charity_name", "hit_target", "wk_created", "mo_created", "yr_created",
-                                         "hr_created", "uk_lockdown"))) #Change to purr map
+  mutate_at( ~ factor(.), .vars = vars(c("charity_name", "hit_target", "wk_created", "mo_created", "yr_created","hr_created", "uk_lockdown"))) #Change to purr map
 
 #Fixing NA values
 fdd_fd <- fdd_fd %>%

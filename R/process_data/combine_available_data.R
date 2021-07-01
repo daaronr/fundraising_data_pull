@@ -3,12 +3,15 @@ start_time <- Sys.time()
 library(here)
 here <- here::here
 
-source(here::here("R", "process_data", "folders_funcs.R"))
 
-# This is redundant as data is downloaded from the Github repo
+#p_load(multidplyr)
+#cluster <- new_cluster(4)
+#cluster_library(cluster, "dplyr")
+
+#deleted because this is called in 'main' source(here::here("R", "process_data", "folders_funcs.R"))
+
 # Due to the amount of data downloading is becoming slow may be worth changing
 # Also downloading means that we don't have to have FDP cloned locally
-
 
 #To avoid "invalid multibyte error" on MacOS
 Sys.setlocale("LC_ALL", "C")
@@ -37,21 +40,19 @@ fundraisers_all <- fundraisers_all %>%
   filter(date_downloaded == max(date_downloaded) & is.na(created_date) == FALSE) %>%
   ungroup()
 
-#Filter old effective charities from original_effective_charities.csv
-orig_charity_sample <-
-  readr::read_csv(here("data", "effective_charities.csv"))
+#Merge with info on effective charities
+effective_charities_names <- readr::read_csv(here("data", "effective_charities.csv"))
 
 donations_all <- donations_all %>%
-  left_join(orig_charity_sample, by = c("charity_id" = "justgiving_id")) %>%
+  left_join(effective_charities_names, by = c("charity_id" = "justgiving_id")) %>%
   mutate(charity_name = as.factor(charity_name))
 
 #### Trying to fix exchange rates (see analysis_report) ####
-currency <-
-  donations_all %>% filter(donor_local_currency_code != "GBP" |
+currency <- donations_all %>% filter(donor_local_currency_code != "GBP" |
                              NA) %>% select(donor_local_currency_code) %>% unique()
 
-exchange <-
-  donations_all %>% filter(donor_local_currency_code %in% currency$donor_local_currency_code) %>%
+exchange <- donations_all %>% 
+  filter(donor_local_currency_code %in% currency$donor_local_currency_code) %>%
   group_by(donor_local_currency_code) %>%
   filter(date_downloaded == max(date_downloaded)) %>%
   group_by(donor_local_currency_code) %>%
@@ -98,10 +99,11 @@ fundraisers_all <-
     fundraising_target = replace(
       fundraising_target,
       fundraising_target >= 500000 &
-        total_raised < 1000 | total_raised == NA,
+        total_raised < 1000 | is.na(total_raised),
       NA
     )
   )
+
 # Code date variables
 fundraisers_all <- fundraisers_all %>%
   mutate(
@@ -127,9 +129,12 @@ fundraisers_all <- fundraisers_all %>%
   mutate(activity_charity_created = as.logical(activity_charity_created))
 
 
-#### Creating summary variables for donations ####
+
+#### Creating summary variables for donations; partition it because the rest is slow ####
+donations_sum <- donations_all 
+    
 suppressWarnings(
-  donations_sum <- donations_all %>%
+donations_sum  %<>%
     group_by(page_short_name) %>% arrange(page_short_name, donation_date) %>%
     dplyr::mutate(
       amount = if_else(is.na(amount), 0, amount),
@@ -147,16 +152,29 @@ suppressWarnings(
 #Adding created_date and event_date to donations_sum for further summary variables
 donations_sum <- fundraisers_all %>%
   select(created_date, event_date, page_short_name) %>%
-  right_join(donations_sum, by = "page_short_name")
+  right_join(donations_sum, by = "page_short_name", `copy`=TRUE)
 
 # Create summary variables for durations until event
-donations_sum <-
-  donations_sum %>% group_by(page_short_name, donation_date) %>%
+#donations_sum <- donations_sum %>%
+ # rowwise %>% 
+  #mutate(random = sample(1:4, 1)) %>% 
+  #group_by(random) %>% 
+  #multidplyr::partition(cluster) #bc it's so slow ... but this doesn't seem to help :(
+
+donations_sum %<>% 
+  group_by(page_short_name, donation_date) %>%
   mutate(
     dur_cdate = as.double(difftime(donation_date, created_date, units = "days")),
-    dur_edate = as.double(difftime(event_date, donation_date, units = "days")),
+    dur_edate = as.double(difftime(event_date, donation_date, units = "days"))
+  )
+ 
+donations_sum %<>% 
+  mutate(   
     dur_cd_95 = if_else((cumshare < 0.95), Inf, min(dur_cdate)),
-    dur_ed_95 = if_else((cumshare < 0.95), Inf, min(dur_edate))) %>%
+    dur_ed_95 = if_else((cumshare < 0.95), Inf, min(dur_edate))
+    ) 
+
+donations_sum %<>%
     sjlabelled::var_labels(
       dur_cdate = "duration between page creation and 'this donation'",
       dur_edate = "duration between 'this donation' and page's event date",
@@ -253,7 +271,7 @@ donations_sum <- donations_sum %>%
 #Number of donations before ... page-checking times ####
 donations_sum <- donations_sum %>%
   group_by(page_short_name) %>%
-  arrange(page_short_name,donation_date) %>%
+  arrange(page_short_name, donation_date) %>%
   mutate(
     n_don_11am_d1 = max(donnum[date(donation_date)==date(don1_date) & hour(donation_date)<11]), #num don's by 11am UK on same day as don1
     n_don_11am_d2 = max(donnum[dur_dd1_11am<1]), #... on next day
@@ -329,7 +347,7 @@ donations_sum <- donations_sum %>%
     )
   )
 
-                           
+
 #### Collapse to 1 row per fundraiser, get key statistics for fundraiser (can merge back to fundraisers_all) ####
 Fdd_f <-
   list(.vars = lst(
@@ -341,6 +359,7 @@ Fdd_f <-
     list(
       count_don = ~ n(),
       high_don = ~ max(.),
+      low_don = ~ min(.),
       sum_don = ~ sum(.),
       med_don = ~ median(.),
       mn_don = ~ mean(.)
@@ -348,31 +367,44 @@ Fdd_f <-
     ~ first(.),
     ~ min(.)
   ))  %>%
-  pmap( ~ donations_sum %>% group_by(page_short_name) %>% summarise_at(.x, .y)) %>%
+  pmap( ~ donations_sum %>% group_by(page_short_name) %>% 
+          summarise_at(.x, .y)) %>%
   reduce(inner_join, by = "page_short_name") %>%
   ungroup()
 
 
 #merge back in other key created variables:
-Fdd_f2 <- left_join(donations_sum, Fdd_f, by = "page_short_name")
 
-fdd_fd <- left_join(fundraisers_all, Fdd_f, by = "page_short_name")
-#Note -- I think merge_cols must be poorly written, it takes forever
+#(donations 'summed' data with 1 row per fundraiser)
+f_donations_sum <- donations_sum[!duplicated(donations_sum$page_short_name),]
+
+fdd_fd  <- left_join(Fdd_f, f_donations_sum, by = "page_short_name")
+
+rm(Fdd_f)
+
+#and then back to fundraisers_all data
+fdd_fd <- left_join(fundraisers_all, fdd_fd, by = "page_short_name") %>% 
+  rename(charity_id = charity_id.x) %>%
+  select(-charity_id.y) %>% 
+  mutate(
+    date_downloaded = coalesce(date_downloaded.x, date_downloaded.y),
+    created_date = coalesce(created_date.x, created_date.y), 
+    event_date = coalesce(event_date.x, event_date.y), 
+    charity_name = coalesce(charity_name.x, charity_name.y)
+  
+    )
 
 #Removing redundant variables
-fdd_fd <- fdd_fd %>% select(
-  owner,
-  charity_id,
-  total_raised,
-  matches(
+fdd_fd %<>% 
+dplyr::select( owner, charity_id, total_raised,
+               matches(
     "status|first|don1|date|created|page_short_name|charity_name|gift_aid|percentage|country_code|target|date_|dur_|_don|_created|event_name|activity_type|total_raised_offline|av_don_|cumsum_",
     ignore.case = FALSE
   ),
   -target_amount
 )
 
-fdd_fd <- fdd_fd %>%
-  mutate(
+fdd_fd %<>%  mutate(
     across(
       matches("cumsum_"),
       ~ case_when(
@@ -399,11 +431,12 @@ mutate(
   )
 )
 
-#Filter out duplicates
-fdd_fd <- fdd_fd %>% distinct(.keep_all = TRUE)
+  #Filter out duplicates
+fdd_fd %<>% distinct(.keep_all = TRUE)
+
 
 #### Calculating new variables for analysis. ####
-fdd_fd <- fdd_fd %>%
+fdd_fd %<>% 
   mutate(
     download_dur = as.numeric(as.duration(interval(
       date_downloaded, expiry_date
