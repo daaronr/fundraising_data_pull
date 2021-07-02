@@ -28,7 +28,7 @@ donations_all <- monthly_dons %>%
 fundraisers_all <- monthly_fund %>%
   list.files(pattern = "*.csv", recursive = TRUE, full.names = TRUE) %>%
   map_df(~fread(., colClasses = "character")) %>%
-  janitor::clean_names("snake") %>% 
+  janitor::clean_names("snake") %>%
   distinct() %>%
   select(!!fundraiser_vars) %>%
   type_convert() # Convert types back
@@ -51,7 +51,7 @@ donations_all <- donations_all %>%
 currency <- donations_all %>% filter(donor_local_currency_code != "GBP" |
                              NA) %>% select(donor_local_currency_code) %>% unique()
 
-exchange <- donations_all %>% 
+exchange <- donations_all %>%
   filter(donor_local_currency_code %in% currency$donor_local_currency_code) %>%
   group_by(donor_local_currency_code) %>%
   filter(date_downloaded == max(date_downloaded)) %>%
@@ -130,9 +130,9 @@ fundraisers_all <- fundraisers_all %>%
 
 
 
-#### Creating summary variables for donations; partition it because the rest is slow ####
-donations_sum <- donations_all 
-    
+#### Creating summary variables for donations####
+donations_sum <- donations_all
+
 suppressWarnings(
 donations_sum  %<>%
     group_by(page_short_name) %>% arrange(page_short_name, donation_date) %>%
@@ -156,23 +156,23 @@ donations_sum <- fundraisers_all %>%
 
 # Create summary variables for durations until event
 #donations_sum <- donations_sum %>%
- # rowwise %>% 
-  #mutate(random = sample(1:4, 1)) %>% 
-  #group_by(random) %>% 
+ # rowwise %>%
+  #mutate(random = sample(1:4, 1)) %>%
+  #group_by(random) %>%
   #multidplyr::partition(cluster) #bc it's so slow ... but this doesn't seem to help :(
 
-donations_sum %<>% 
+donations_sum %<>%
   group_by(page_short_name, donation_date) %>%
   mutate(
     dur_cdate = as.double(difftime(donation_date, created_date, units = "days")),
     dur_edate = as.double(difftime(event_date, donation_date, units = "days"))
   )
- 
-donations_sum %<>% 
-  mutate(   
+
+donations_sum %<>%
+  mutate(
     dur_cd_95 = if_else((cumshare < 0.95), Inf, min(dur_cdate)),
     dur_ed_95 = if_else((cumshare < 0.95), Inf, min(dur_edate))
-    ) 
+    )
 
 donations_sum %<>%
     sjlabelled::var_labels(
@@ -201,9 +201,8 @@ donations_sum %<>%
     sjlabelled::var_labels(
       dur_dd1 = "days between 'this donation' and first donation on page",
       dur_dd1_11am = "days between first donation on page and 11am on page's first day",
-      dur_dd1_10pm = 
-        "days between first donation on page and 10pm on page's first day",
-      dur_dd_7don ="days between 1st and 7th  donation on page", 
+      dur_dd1_10pm = "days between first donation on page and 10pm on page's first day",
+      dur_dd_7don ="days between 1st and 7th  donation on page",
       don7_date = "date of donation 7",
       dur_cd_7don = "days until 7 donations"
     )
@@ -239,22 +238,22 @@ donations_sum <- donations_sum %>%
   mutate(
     cumsum_avgtime_to_3 = max(
       cumsum[(donation_date > don1_date) &
-               (donation_date <= don1_date + 
+               (donation_date <= don1_date +
                   duration(days=dur_to_x_don$med_dur_3don)
                )]
     ),
     cumsum_avgtime_to_7 = max(
-      cumsum[(donation_date > don1_date) & 
-               (donation_date <= don1_date + 
+      cumsum[(donation_date > don1_date) &
+               (donation_date <= don1_date +
                   duration(days=dur_to_x_don$med_dur_7don)
                )]
     ),
-    cumsum_p25_dur_7don = max(cumsum[(donation_date <= created_date + 
+    cumsum_p25_dur_7don = max(cumsum[(donation_date <= created_date +
                                         duration(days=dur_to_x_don$p25_dur_7don)
     )]),
     cumsum_p25_dd_7don = max(
       cumsum[(donation_date > don1_date) &
-               (donation_date <= (don1_date + 
+               (donation_date <= (don1_date +
                   duration(days=dur_to_x_don$p25_dd_7don)
                ))]
     )
@@ -290,9 +289,9 @@ donations_sum <- donations_sum %>%
 
     ##For next 6 donations after first donation (better: after first check time) ####
     cumsum_nextsix_lessfirst = max(
-      cumsum[date(donation_date)>date(don1_date) 
+      cumsum[date(donation_date)>date(don1_date)
              & donnum>1 & donnum<=7] ),
-    
+
     ##Before timings after first donations ####
     cumsum_11am_d1 = max(cumsum[date(donation_date)==date(don1_date) & hour(donation_date)<11]),
     cumsum_11am_d2 = max(cumsum[dur_dd1_11am<1]),
@@ -315,7 +314,7 @@ donations_sum <-  donations_sum %>%
     av_don_check = cumsum_check/n_don_check,
     av_don_11am_d1 = cumsum_11am_d1/n_don_11am_d1,
     av_don_10pm_d1= cumsum_10pm_d1/n_don_10pm_d1
-    ) %>% 
+    ) %>%
   mutate(
     across(
       matches("av_don_"),
@@ -339,7 +338,7 @@ donations_sum <- donations_sum %>%
            TRUE ~ .
          )
     )
-  ) %>% 
+  ) %>%
   mutate(
     across(
       matches("n_don_"),
@@ -367,7 +366,7 @@ Fdd_f <-
     ~ first(.),
     ~ min(.)
   ))  %>%
-  pmap( ~ donations_sum %>% group_by(page_short_name) %>% 
+  pmap( ~ donations_sum %>% group_by(page_short_name) %>%
           summarise_at(.x, .y)) %>%
   reduce(inner_join, by = "page_short_name") %>%
   ungroup()
@@ -381,21 +380,30 @@ f_donations_sum <- donations_sum[!duplicated(donations_sum$page_short_name),]
 fdd_fd  <- left_join(Fdd_f, f_donations_sum, by = "page_short_name")
 
 rm(Fdd_f)
+rm(f_donations_sum)
 
 #and then back to fundraisers_all data
-fdd_fd <- left_join(fundraisers_all, fdd_fd, by = "page_short_name") %>% 
+fdd_fd <- left_join(fundraisers_all, fdd_fd, by = "page_short_name") %>%
   rename(charity_id = charity_id.x) %>%
-  select(-charity_id.y) %>% 
-  mutate(
-    date_downloaded = coalesce(date_downloaded.x, date_downloaded.y),
-    created_date = coalesce(created_date.x, created_date.y), 
-    event_date = coalesce(event_date.x, event_date.y), 
-    charity_name = coalesce(charity_name.x, charity_name.y)
-  
-    )
+  select(-charity_id.y) 
+
+#... reconciling and coalescing duplicate variables (doublecheck these) ####
+#Todo: this should be a function ... we do it all the time
+
+nms <- names(fdd_fd)[endsWith(names(fdd_fd),".x")] %>% 
+  str_replace(string = .,
+              pattern = ".x",
+              replacement="")
+
+fdd_fd %<>% map_dfc(nms,
+                    ~ coalesce(fdd_fd[[paste0(.,".x")]],
+                               fdd_fd[[paste0(.,".y")]]
+                    )) %>% 
+    setNames(nms)
+
 
 #Removing redundant variables
-fdd_fd %<>% 
+fdd_fd %<>%
 dplyr::select( owner, charity_id, total_raised,
                matches(
     "status|first|don1|date|created|page_short_name|charity_name|gift_aid|percentage|country_code|target|date_|dur_|_don|_created|event_name|activity_type|total_raised_offline|av_don_|cumsum_",
@@ -413,13 +421,13 @@ fdd_fd %<>%  mutate(
         TRUE ~ .
       )
     )
-  ) %>% 
+  ) %>%
   mutate(
     across(
       matches("n_don_"),
       ~ if_else(is.na(.),0,.)
     )
-  ) %>% 
+  ) %>%
 mutate(
   across(
     matches("av_don_"),
@@ -436,7 +444,7 @@ fdd_fd %<>% distinct(.keep_all = TRUE)
 
 
 #### Calculating new variables for analysis. ####
-fdd_fd %<>% 
+fdd_fd %<>%
   mutate(
     download_dur = as.numeric(as.duration(interval(
       date_downloaded, expiry_date
@@ -454,8 +462,8 @@ fdd_fd %<>%
       created_date, event_date
     )), "days"),
     uk_lockdown = if_else(created_date %within% interval("2020-03-23", "2020-05-10"), 1, 0),
-    prior_2020 = as.factor(if_else(first_downloaded >= "2020-01-01", 
-                                   "Pulled during or after 2020", 
+    prior_2020 = as.factor(if_else(first_downloaded >= "2020-01-01",
+                                   "Pulled during or after 2020",
                                    "Pulled prior to 2020"))) #When did lockdown end officially?
 
 source(here("R", "process_data", "clean_data.R"), local = TRUE)
