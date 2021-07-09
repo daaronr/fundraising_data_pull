@@ -5,6 +5,7 @@ library(here)
 library(stringr)
 library(data.table)
 library(assertthat)
+library(magrittr)
 
 #### Define functions ####
 
