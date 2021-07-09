@@ -4,8 +4,6 @@
 
 library(here)
 
-source(here("code", "functions.R")) # functions grabbed from web and created by us for analysis/output
-
 # Set key folders and import packages
 source(here("R", "process_data", "folders_funcs.R"))
 
