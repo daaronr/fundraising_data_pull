@@ -8,5 +8,5 @@ Rscript R/process_data/main.R
 GIT=`which git` 
 ${GIT} pull
 ${GIT} add --all
-${GIT} commit -m "Data munge: `date + '%Y-%m-%d'`"
+${GIT} commit -m "Data munge: `date +'%Y-%m-%d'`"
 ${GIT} push
