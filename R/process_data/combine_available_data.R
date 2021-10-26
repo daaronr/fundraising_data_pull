@@ -377,9 +377,13 @@ Fdd_f <-
 #(donations 'summed' data with 1 row per fundraiser)
 f_donations_sum <- donations_sum[!duplicated(donations_sum$page_short_name),]
 
-fdd_fd  <- left_join(Fdd_f, f_donations_sum, by = "page_short_name")
+Fdd_f2  <- left_join(Fdd_f, f_donations_sum)
+
+fdd_fd <- left_join(fundraisers_all, Fdd_f)
 
 # @DR: The below seems pretty broken
+# Instead we can just do a left_join without specifying "by" and this will match on the duplicate columns as well
+
 # rm(Fdd_f)
 # rm(f_donations_sum)
 # 
