@@ -379,28 +379,29 @@ f_donations_sum <- donations_sum[!duplicated(donations_sum$page_short_name),]
 
 fdd_fd  <- left_join(Fdd_f, f_donations_sum, by = "page_short_name")
 
-rm(Fdd_f)
-rm(f_donations_sum)
-
-#and then back to fundraisers_all data
-fdd_fd <- left_join(fundraisers_all, fdd_fd, by = "page_short_name") %>%
-  rename(charity_id = charity_id.x) %>%
-  select(-charity_id.y) 
-
-#... reconciling and coalescing duplicate variables (doublecheck these) ####
-#Todo: this should be a function ... we do it all the time
-
-nms <- names(fdd_fd)[endsWith(names(fdd_fd),".x")] %>% 
-  str_replace(string = .,
-              pattern = ".x",
-              replacement="")
-
-fdd_fd %<>% map_dfc(nms,
-                    ~ coalesce(fdd_fd[[paste0(.,".x")]],
-                               fdd_fd[[paste0(.,".y")]]
-                    )) %>% 
-    setNames(nms)
-
+# @DR: The below seems pretty broken
+# rm(Fdd_f)
+# rm(f_donations_sum)
+# 
+# #and then back to fundraisers_all data
+# fdd_fd <- left_join(fundraisers_all, fdd_fd, by = "page_short_name") %>%
+#   rename(charity_id = charity_id.x) %>%
+#   select(-charity_id.y) 
+# 
+# #... reconciling and coalescing duplicate variables (doublecheck these) ####
+# #Todo: this should be a function ... we do it all the time
+# 
+# nms <- names(fdd_fd)[endsWith(names(fdd_fd),".x")] %>% 
+#   str_replace(string = .,
+#               pattern = ".x",
+#               replacement="")
+# 
+# fdd_fd %<>% map_dfc(nms,
+#                     ~ coalesce(fdd_fd[[paste0(.,".x")]],
+#                                fdd_fd[[paste0(.,".y")]]
+#                     )) %>% 
+#     setNames(nms)
+# 
 
 #Removing redundant variables
 fdd_fd %<>%
