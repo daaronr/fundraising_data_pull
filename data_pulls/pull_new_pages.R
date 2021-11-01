@@ -1,29 +1,15 @@
-#### Script for running pull for new pages every 24 hours ####
+#### Script for running pull for new pages ####
+# Can be automated by modifying the shell script pull_new_top10.sh  
 rm(list=ls())
 #### Load packages ####
 
 library(pacman)
 
 p_load(dplyr,magrittr,purrr,tidyverse,tidyr,broom,janitor, here,glue,
-       dataMaid,readr,lubridate, httr,jsonlite,rlist,XML, git2r,
+       dataMaid,readr,lubridate, httr,jsonlite,rlist,XML,
        install = FALSE) #git2r is new
 
-#Set working directory
-setwd(here())
-
-#Set repo
-repo <- getwd()
-
-#Username for Git
-#TODO: separate account to use the password for
-
-username <- "fundraising_data_pull@outlook.com"
-password <- "justgiving_api1"
-
 #### Pull in the repo based in the working directory (to avoid merge conflicts) ####
-
-git2r::pull(repo = repo)
-detach("package:git2r", unload = TRUE)
 
 #Setting file paths and folders
 source("R/set_folders.R")
@@ -39,27 +25,3 @@ source("R/functions.R")
 #TODO: remove user input section, decide on which subset we are using
 
 source("R/just_giving_data_pull_new_only.R")
-
-#### Stage, commit and push changes to the Repo to use on any computer ####
-library(git2r)
-
-#Stage changes
-git2r::add(repo, path = "fundraising_data_pull"
-)
-
-#Stage untracked files (new files which have been created)
-num <- unlist(git2r::status()$untracked)
-if (num > 0) {
-  for (i in 1:length(unlist(git2r::status()$untracked))) {
-    git2r::add(repo, num[i])
-  }
-}
-
-#Commit changes
-git2r::commit(repo,
-              message = paste("New data", Sys.Date()), all = TRUE)
-
-#Push changes
-git2r::push(object = repo,
-            credentials = cred_user_pass(username = username,
-                                         password = password)  )
