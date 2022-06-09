@@ -189,6 +189,7 @@ donations_sum %<>%
         donation_date, floor_date(don1_date, unit = "day") + hours(22)), "days"),
       don3_date = min(donation_date[donnum >= 3]),
       don7_date = min(donation_date[donnum >= 7]),
+      dur_cd_2don = min(dur_cdate[donnum >= 2]),
       dur_cd_3don = min(dur_cdate[donnum >= 3]),
       dur_cd_7don = min(dur_cdate[donnum >= 7]),
       dur_dd_7don = min(dur_dd1[donnum >= 7])
