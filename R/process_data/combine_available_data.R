@@ -187,6 +187,7 @@ donations_sum %<>%
         donation_date, floor_date(don1_date, unit = "day") + hours(11)), "days"),
       dur_dd1_10pm = as.double(difftime(
         donation_date, floor_date(don1_date, unit = "day") + hours(22)), "days"),
+      don2_date = min(donation_date[donnum >= 2]),
       don3_date = min(donation_date[donnum >= 3]),
       don7_date = min(donation_date[donnum >= 7]),
       dur_cd_2don = min(dur_cdate[donnum >= 2]),
@@ -203,17 +204,37 @@ donations_sum %<>%
       dur_cd_7don = "days until 7 donations"
     )
 
+
+tryCatch({
+  effective_char <- readr::read_csv("https://raw.githubusercontent.com/daaronr/fundraising_data_pull/master/data/effective_charities.csv") %>%
+    select(charity_name, justgiving_id)
+},  error = function(e) {
+  effective_char <- readr::read_csv(here("input_data","effective_charities.csv"))
+}
+)
+
+f_uk <-  "grepl('^UK$|GB|great britain|united kingdom', country_code, ignore.case = TRUE)"
+f_effective <- "charity_id %in% effective_char$justgiving_id"
+f_pos_funds <- "total_raised > 0"
+f_dld_post_4_20 <- "date_downloaded > as.POSIXct('2020-04-01 01:00:00', tz='UTC')"
+
+f_seems_done <-"seems_done==TRUE" 
+
+
 #     Median of time until 3, and until 7 donations
-dur_to_x_don <- donations_sum %>%
-  select(donnum, dur_cd_3don, dur_cd_7don, dur_dd_7don) %>%
+donations_sum_1 <- donations_sum %>%
+  select(donnum, dur_cd_3don, dur_cd_7don, dur_dd_7don, charity_id, page_short_name) %>%
+  mutate(
+    d_effective = eval(parse(text=f_effective))) %>% 
+#just a fancy way of using text from filters coded above
   mutate(
     dur_cd_7don_topcode = if_else(is.na(dur_cd_7don), 10000000000, dur_cd_7don),
     dur_cd_3don_topcode = if_else(is.na(dur_cd_3don), 10000000000, dur_cd_3don)
   ) %>%
   filter(donnum == 1) %>%
   ungroup() %>%
-#Q: is this done separately for effective and non-effective? We want to do that for our scoping.
-  summarise(med_dur_3don = median((dur_cd_3don), na.rm = TRUE),
+  group_by(d_effective) %>% 
+  mutate(med_dur_3don = median((dur_cd_3don), na.rm = TRUE),
             med_dur_7don = median((dur_cd_7don), na.rm = TRUE),
             med_dur_dd_7don = median((dur_dd_7don), na.rm = TRUE),
             p25_dur_7don = quantile(dur_cd_7don, 0.25, na.rm = TRUE),
@@ -224,8 +245,12 @@ dur_to_x_don <- donations_sum %>%
     med_dur_dd_7don = "Median days from 1st to 7th donation",
     p25_dur_7don = "25th percentile days to 7 donations",
     p25_dd_7don = "25th percentile days from 1st to 7th don"
-    )
+    ) %>% 
+  select(-donnum, -dur_cd_3don, -dur_cd_7don, -dur_dd_7don)
   #Note: the result is similar whether or not we 'topcode' the pages that don't reach this number
+
+#TODO -- just merge the above back in
+donations_sum <- left_join(donations_sum, donations_sum_1, by = "page_short_name")
 
 
 # donations_sum - summary variables on donations by page and by page duration
@@ -381,11 +406,11 @@ fdd_fd <- fdd_fd0 %>%
   left_join(., f_donations_sum, by="page_short_name") 
 
 
-#Removing redundant variables
+#Removing redundant (not needed) variables
 fdd_fd %<>%
 dplyr::select( owner, charity_id, total_raised,
                matches(
-    "status|first|don1|date|created|page_short_name|charity_name|gift_aid|percentage|country_code|target|date_|dur_|_don|_created|event_name|activity_type|total_raised_offline|av_don_|cumsum_",
+    "status|first|don|date|created|page_short_name|charity_name|gift_aid|percentage|country_code|target|date_|dur_|_don|_created|event_name|activity_type|total_raised_offline|av_don_|cumsum_",
     ignore.case = FALSE
   ),
   -target_amount

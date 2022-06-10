@@ -7,8 +7,15 @@
 
 #TODO: Some pages funds are all raised offline: impute values for high_don, sum_don ?
 
-#Rename vars
-fdd_fd <- fdd_fd %>% dplyr::rename(charity_created = activity_charity_created)
+# Logical for 'if it is effective, raised funds, uk, seems done' ####
+fdd_fd <- fdd_fd  %>%  mutate(
+  d_effective =   eval(parse(text=f_effective)), #just a fancy way of using text from filters coded above
+  d_raise_pos = eval(parse(text=f_pos_funds)),
+  d_seems_done = eval(parse(text=f_seems_done))
+  )
+
+# Rename vars ####
+fdd_fd %<>% dplyr::rename(charity_created = activity_charity_created)
 
 #Drop empty factor levels
 fdd_fd <- droplevels(fdd_fd)
@@ -104,3 +111,10 @@ fdd_fd <- fdd_fd %>%
   #Fix invalid multibyte errors from non-utf-8 data
   fdd_fd <-
     fdd_fd %>% mutate_at(list( ~ str_replace(., "[^[:graph:]]", " ")), .vars = vars(c("event_name", "owner", "country_code", "charity_name")))
+
+
+# Make 'inf' values into NA ####
+
+
+is.na(fdd_fd) <- do.call(cbind, lapply(fdd_fd, is.infinite))
+
