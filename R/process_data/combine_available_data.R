@@ -253,7 +253,9 @@ donations_sum_1 <- donations_sum %>%
 donations_sum <- left_join(donations_sum, donations_sum_1, by = "page_short_name")
 
 
+
 # donations_sum - summary variables on donations by page and by page duration
+
 donations_sum <- donations_sum %>%
   group_by(page_short_name) %>%
   arrange(page_short_name, donation_date) %>%
@@ -261,22 +263,34 @@ donations_sum <- donations_sum %>%
     cumsum_avgtime_to_3 = max(
       cumsum[(donation_date > don1_date) &
                (donation_date <= don1_date +
-                  duration(days=dur_to_x_don$med_dur_3don)
+                  duration(days=med_dur_3don)
                )]
+    ),
+    cumcount_avgtime_to_3 = max(
+      donnum[(donation_date > don1_date) &
+          (donation_date <= don1_date +
+              duration(days=med_dur_3don)
+          )]
     ),
     cumsum_avgtime_to_7 = max(
       cumsum[(donation_date > don1_date) &
                (donation_date <= don1_date +
-                  duration(days=dur_to_x_don$med_dur_7don)
+                  duration(days=med_dur_7don)
                )]
     ),
+    cumcount_avgtime_to_7 = max(
+      donnum[(donation_date > don1_date) &
+          (donation_date <= don1_date +
+              duration(days=med_dur_7don)
+          )]
+    ),
     cumsum_p25_dur_7don = max(cumsum[(donation_date <= created_date +
-                                        duration(days=dur_to_x_don$p25_dur_7don)
+                                        duration(days=p25_dur_7don)
     )]),
     cumsum_p25_dd_7don = max(
       cumsum[(donation_date > don1_date) &
                (donation_date <= (don1_date +
-                  duration(days=dur_to_x_don$p25_dd_7don)
+                  duration(days=p25_dd_7don)
                ))]
     )
   )   %>%
@@ -398,7 +412,7 @@ Fdd_f <-
 
 #(donations 'summed' data with 1 row per fundraiser)
 f_donations_sum <- donations_sum[!duplicated(donations_sum$page_short_name),] %>% 
-  dplyr::select(-charity_id, -charity_name, -created_date, -currency_code, -date_downloaded, -event_date, -don1_date, -dur_cdate, -dur_edate, -dur_ed_95, -dur_cd_95)
+  dplyr::select(-charity_name, -created_date, -currency_code, -date_downloaded, -event_date, -don1_date, -dur_cdate, -dur_edate, -dur_ed_95, -dur_cd_95)
 
 fdd_fd0 <- left_join(fundraisers_all, Fdd_f)
 

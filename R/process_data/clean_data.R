@@ -11,7 +11,8 @@
 fdd_fd <- fdd_fd  %>%  mutate(
   d_effective =   eval(parse(text=f_effective)), #just a fancy way of using text from filters coded above
   d_raise_pos = eval(parse(text=f_pos_funds)),
-  d_seems_done = eval(parse(text=f_seems_done))
+#d_seems_done = eval(parse(text=f_seems_done))
+#LOST this column? object 'seems_done' not found
   )
 
 # Rename vars ####
