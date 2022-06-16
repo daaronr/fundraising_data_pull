@@ -1,6 +1,7 @@
 #just_giving_data_pull.R: This script downloads all current data for the target (effective) charities and the 'top-10' UK charities
 
 #(note: a file with the same name was previously doing only the effective charities)
+# note (3rd Feb) iirc I don't think i've ever successfully run this file, it takes so so long to complete likely due to the inclusion of 'top-10' charities
 
 #It also saves a snapshot
 
