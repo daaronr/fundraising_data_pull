@@ -155,11 +155,6 @@ donations_sum <- fundraisers_all %>%
   right_join(donations_sum, by = "page_short_name", `copy`=TRUE)
 
 # Create summary variables for durations until event
-#donations_sum <- donations_sum %>%
- # rowwise %>%
-  #mutate(random = sample(1:4, 1)) %>%
-  #group_by(random) %>%
-  #multidplyr::partition(cluster) #bc it's so slow ... but this doesn't seem to help :(
 
 donations_sum %<>%
   group_by(page_short_name, donation_date) %>%
@@ -216,6 +211,7 @@ dur_to_x_don <- donations_sum %>%
   ) %>%
   filter(donnum == 1) %>%
   ungroup() %>%
+#Q: is this done separately for effective and non-effective? We want to do that for our scoping.
   summarise(med_dur_3don = median((dur_cd_3don), na.rm = TRUE),
             med_dur_7don = median((dur_cd_7don), na.rm = TRUE),
             med_dur_dd_7don = median((dur_dd_7don), na.rm = TRUE),
@@ -382,7 +378,6 @@ fdd_fd0 <- left_join(fundraisers_all, Fdd_f)
 
 fdd_fd <- fdd_fd0 %>%
   left_join(., f_donations_sum, by="page_short_name") 
-
 
 
 #Removing redundant variables
