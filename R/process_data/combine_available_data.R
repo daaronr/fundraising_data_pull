@@ -234,6 +234,7 @@ donations_sum_1 <- donations_sum %>%
   filter(donnum == 1) %>%
   ungroup() %>%
   group_by(d_effective) %>% 
+#CHeck: this seems to have dropped for the not-effective ones
   mutate(med_dur_3don = median((dur_cd_3don), na.rm = TRUE),
             med_dur_7don = median((dur_cd_7don), na.rm = TRUE),
             med_dur_dd_7don = median((dur_dd_7don), na.rm = TRUE),
@@ -251,8 +252,6 @@ donations_sum_1 <- donations_sum %>%
 
 #TODO -- just merge the above back in
 donations_sum <- left_join(donations_sum, donations_sum_1, by = "page_short_name")
-
-
 
 # donations_sum - summary variables on donations by page and by page duration
 
@@ -275,7 +274,8 @@ donations_sum <- donations_sum %>%
     cumsum_avgtime_to_7 = max(
       cumsum[(donation_date > don1_date) &
                (donation_date <= don1_date +
-                  duration(days=med_dur_7don)
+                  duration(days=med_dur_7don) 
+#technically should be to duration of 6.5 donations
                )]
     ),
     cumcount_avgtime_to_7 = max(
@@ -422,7 +422,7 @@ fdd_fd <- fdd_fd0 %>%
 
 #Removing redundant (not needed) variables
 fdd_fd %<>%
-dplyr::select( owner, charity_id, total_raised,
+dplyr::select( owner, charity_id, total_raised, d_effective,
                matches(
     "status|first|don|date|created|page_short_name|charity_name|gift_aid|percentage|country_code|target|date_|dur_|_don|_created|event_name|activity_type|total_raised_offline|av_don_|cumsum_",
     ignore.case = FALSE
@@ -484,6 +484,30 @@ fdd_fd %<>%
                                    "Pulled during or after 2020",
                                    "Pulled prior to 2020"))) #When did lockdown end officially?
 
+
+
+#### Further analysis and scoping features ####
+
+fdd_fd <- fdd_fd %>% 
+  mutate(
+    time_to_next_don_proxy =
+      as.duration(
+        ymd_hms(don2_date) - ymd_hms(don1_date)
+        #ymd_hms(don3_date) - ymd_hms(don1_date)
+      )/ ddays(1) 
+  )
+  
+
+fdd_fd <- fdd_fd %>%
+  group_by(d_effective) %>% 
+  mutate(
+    mean_time_to_7 = mean(dur_cd_7don, na.rm=TRUE),
+    med_time_to_7 = median(dur_cd_7don, na.rm = TRUE),
+  ) %>%
+  ungroup()
+
+fdd_fd %<>% mutate(created_mo = floor_date(created_date, "months"))
+
 source(here("R", "process_data", "clean_data.R"), local = TRUE)
 
 end_time <- Sys.time()
@@ -492,3 +516,4 @@ print(duration)
 saveRDS(fdd_fd, file = "rds/fundraisers_w_don_info")
 saveRDS(donations_all, file = "rds/donations_all")
 saveRDS(fundraisers_all, file = "rds/fundraisers_all")
+
