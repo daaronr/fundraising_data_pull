@@ -8,5 +8,5 @@ Rscript data_pulls/pull_new_pages.R
 GIT=`which git`
 ${GIT} pull
 ${GIT} add --all
-${GIT} commit -m "Data pull effective: `date +'%Y-%m-%d'`"
+${GIT} commit -m "Data pull top10: `date +'%Y-%m-%d'`"
 ${GIT} push
