@@ -218,14 +218,14 @@ f_effective <- "charity_id %in% effective_char$justgiving_id"
 f_pos_funds <- "total_raised > 0"
 f_dld_post_4_20 <- "date_downloaded > as.POSIXct('2020-04-01 01:00:00', tz='UTC')"
 
-f_seems_done <-"seems_done==TRUE" 
+f_seems_done <-"seems_done==TRUE"
 
 
 #     Median of time until 3, and until 7 donations
 donations_sum_1 <- donations_sum %>%
   select(donnum, dur_cd_3don, dur_cd_7don, dur_dd_7don, charity_id, page_short_name) %>%
   mutate(
-    d_effective = eval(parse(text=f_effective))) %>% 
+    d_effective = eval(parse(text=f_effective))) %>%
 #just a fancy way of using text from filters coded above
   mutate(
     dur_cd_7don_topcode = if_else(is.na(dur_cd_7don), 10000000000, dur_cd_7don),
@@ -233,7 +233,7 @@ donations_sum_1 <- donations_sum %>%
   ) %>%
   filter(donnum == 1) %>%
   ungroup() %>%
-  group_by(d_effective) %>% 
+  group_by(d_effective) %>%
 #CHeck: this seems to have dropped for the not-effective ones
   mutate(med_dur_3don = median((dur_cd_3don), na.rm = TRUE),
             med_dur_7don = median((dur_cd_7don), na.rm = TRUE),
@@ -246,7 +246,7 @@ donations_sum_1 <- donations_sum %>%
     med_dur_dd_7don = "Median days from 1st to 7th donation",
     p25_dur_7don = "25th percentile days to 7 donations",
     p25_dd_7don = "25th percentile days from 1st to 7th don"
-    ) %>% 
+    ) %>%
   select(-donnum, -dur_cd_3don, -dur_cd_7don, -dur_dd_7don)
   #Note: the result is similar whether or not we 'topcode' the pages that don't reach this number
 
@@ -274,7 +274,7 @@ donations_sum <- donations_sum %>%
     cumsum_avgtime_to_7 = max(
       cumsum[(donation_date > don1_date) &
                (donation_date <= don1_date +
-                  duration(days=med_dur_7don) 
+                  duration(days=med_dur_7don)
 #technically should be to duration of 6.5 donations
                )]
     ),
@@ -298,7 +298,8 @@ donations_sum <- donations_sum %>%
     cumsum_avgtime_to_3 = "donations after 1st don & before 'avg time to 3 total donations'",
     cumsum_avgtime_to_7 = "donations after 1st don & before 'avg time to 7 total donations'",
     cumsum_p25_dur_7don = "before '25th pctl time to 7 total donations'",
-    cumsum_p25_dd_7don = "donations after 1st don & before '25th pctl time to 7 total donations'"
+    cumsum_p25_dd_7don = "donations after 1st don & before '25th pctl time to 7 total donations'",
+    cumcount_avgtime_to_7 = "count of donations after 1st don & before '25th pctl time to 7 total donations'"
   )
 
 #### Create 'donations between 12 hours and "mean-time-to-6 more donations"' variables (Todo) (cumsum_nextsix_less first seems good for now) ####
@@ -367,7 +368,7 @@ donations_sum <-  donations_sum %>%
 donations_sum <- donations_sum %>%
   mutate(
     across(
-        matches("cumsum_"),
+        matches("cumsum_|cumcount_"),
          ~ case_when(
            is.na(.) ~  0,
            is.infinite(.) ~ 0,
@@ -411,20 +412,20 @@ Fdd_f <-
 #merge back in other key created variables:
 
 #(donations 'summed' data with 1 row per fundraiser)
-f_donations_sum <- donations_sum[!duplicated(donations_sum$page_short_name),] %>% 
+f_donations_sum <- donations_sum[!duplicated(donations_sum$page_short_name),] %>%
   dplyr::select(-charity_name, -created_date, -currency_code, -date_downloaded, -event_date, -don1_date, -dur_cdate, -dur_edate, -dur_ed_95, -dur_cd_95)
 
 fdd_fd0 <- left_join(fundraisers_all, Fdd_f)
 
 fdd_fd <- fdd_fd0 %>%
-  left_join(., f_donations_sum, by="page_short_name") 
+  left_join(., f_donations_sum, by="page_short_name")
 
 
 #Removing redundant (not needed) variables
 fdd_fd %<>%
 dplyr::select( owner, charity_id, total_raised, d_effective,
                matches(
-    "status|first|don|date|created|page_short_name|charity_name|gift_aid|percentage|country_code|target|date_|dur_|_don|_created|event_name|activity_type|total_raised_offline|av_don_|cumsum_",
+    "status|first|don|date|created|page_short_name|charity_name|gift_aid|percentage|country_code|target|date_|dur_|_don|_created|event_name|activity_type|total_raised_offline|av_don_|cumsum_|cumcount",
     ignore.case = FALSE
   ),
   -target_amount
@@ -488,18 +489,19 @@ fdd_fd %<>%
 
 #### Further analysis and scoping features ####
 
-fdd_fd <- fdd_fd %>% 
+fdd_fd <- fdd_fd %>%
   mutate(
     time_to_next_don_proxy =
       as.duration(
         ymd_hms(don2_date) - ymd_hms(don1_date)
         #ymd_hms(don3_date) - ymd_hms(don1_date)
-      )/ ddays(1) 
+      )/ ddays(1)
   )
-  
+
 
 fdd_fd <- fdd_fd %>%
-  group_by(d_effective) %>% 
+    filter(!is.na(dur_cd_7don)) %>%
+  group_by(d_effective) %>%
   mutate(
     mean_time_to_7 = mean(dur_cd_7don, na.rm=TRUE),
     med_time_to_7 = median(dur_cd_7don, na.rm = TRUE),
