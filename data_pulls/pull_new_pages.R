@@ -9,7 +9,7 @@ library(pacman)
 
 p_load(dplyr,magrittr,purrr,tidyverse,tidyr,broom,janitor, here,glue,
        dataMaid,readr,lubridate, httr,jsonlite,rlist,XML,
-       install = TRUE) #git2r is new
+       install = TRUE)
 
 #### Pull in the repo based in the working directory (to avoid merge conflicts) ####
 
