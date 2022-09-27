@@ -4,7 +4,7 @@
 data_folder <- 'data'
 
 #File that lists the target charities with their ids
-charities_csv <- file.path(data_folder , 'effective_charities.csv') #replace with your list of preferred charities (this script currently only uses charity name and JustGiving ID)
+charities_csv <- file.path(data_folder , 'charity_sample.csv') #replace with your list of preferred charities (this script currently only uses charity name and JustGiving ID)
 
 # charities_csv_sample <- file.path(data_folder, 'charity_sample.csv')
 

@@ -14,7 +14,7 @@ last_pull <- fundraising_folder %>%
 print(paste("Pulling pages created since", last_pull))
 
 #Get table of target charities
-charity_data_s <- charities_csv_sample %>%
+charity_data_s <- charities_csv %>%
   read_csv %>%
   drop_na(charity_name)
 
