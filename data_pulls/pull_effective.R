@@ -1,4 +1,4 @@
-#### Automated Pull for effective charities only ####
+#### Automated Pull for effective charities only  (DOUBLECHECK -- this seems to do it for top10+)####
 rm(list=ls())
 #### Load packages ####
 
@@ -46,11 +46,11 @@ source("R/just_giving_data_pull_effective.R")
 # Change this to use bash instead
 # #### Stage, commit and push changes to the Repo to use on any computer ####
 # library(git2r)
-# 
+#
 # #Stage changes
 # git2r::add(repo, path = "fundraising_data_pull"
 # )
-# 
+#
 # #Stage untracked files (new files which have been created)
 # num <- unlist(git2r::status()$untracked)
 # if (num > 0) {
@@ -58,11 +58,11 @@ source("R/just_giving_data_pull_effective.R")
 #     git2r::add(repo, num[i])
 #   }
 # }
-# 
+#
 # #Commit changes
 # git2r::commit(repo,
 #               message = paste("New effective data", Sys.Date()), all = TRUE)
-# 
+#
 # #Push changes
 # git2r::push(object = repo,
 #             credentials = cred_user_pass(username = username,

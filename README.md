@@ -14,19 +14,21 @@ This should facilitate the actual running of the experiments.
 ## Files
 
 **bash Folder:**
-- *pull_effective.sh* pulls data on new charities (data_pulls/pull_effective.R) and pushes to Github
-- *data_munge.sh* combines all data using R scripts (script from R/process_data/main.R, calling a bunch of other scripts); saves 3 RDS files 
 
-**R Folder:** 
+- `pull_new_top10_plus_effective.sh` pulls data on fundraisers for top-10 plus effective  charities, and pushes to github
+- *pull_effective.sh* pulls data on new effective charities (data_pulls/pull_effective.R) and pushes to Github
+- *data_munge.sh* combines all data using R scripts (script from R/process_data/main.R, calling a bunch of other scripts); saves 3 RDS files
 
-*Some of these may be used in the aforementioned scripts, or in scripts we will create... need to tidy up/organise* 
+**R Folder:**
+
+*Some of these may be used in the aforementioned scripts, or in scripts we will create... need to tidy up/organise*
 
 - *just_giving_data_pull_sampler.R* ??pulls the effective charities and takes a sample of the top 10 (redundant?).
 - *just_giving_data_pull.R* pulls data on the effective and top 10.
 - *just_giving_data_pull_new_only.R* pulls data on the new fundraisers only.
 - *functions.R* defines functions for data pulls.
 - *get_current_state_and_randomise.R* defines the randomisation process, outputs a file listing all new treatment groups, and saves the current state
-- *set_folders.R* sets the folders needed to run the pulls. Folders containing data are defined in this file. 
+- *set_folders.R* sets the folders needed to run the pulls. Folders containing data are defined in this file.
 
 **R/process_data:**
 - *clean_data.R* performs some light column type adjustments and deals with some missing data
@@ -108,8 +110,8 @@ We also give a broader list in the file effective_charities_plus, including some
 
 ## 'Post-covid' project
 
-TODO: briefly reference/document the adjusted pull for this specific project, what is done where, etc. 
-We recently pulled 9999 entries (the max) per charity for each of the top-10 UK charities as well as the effective charities. 
+TODO: briefly reference/document the adjusted pull for this specific project, what is done where, etc.
+We recently pulled 9999 entries (the max) per charity for each of the top-10 UK charities as well as the effective charities.
 
 
 

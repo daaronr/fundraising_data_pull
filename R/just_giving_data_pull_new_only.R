@@ -18,6 +18,9 @@ charity_data_s <- charities_csv_sample %>%
   read_csv %>%
   drop_na(charity_name)
 
+# Note: these names were defined in `DRfundraising_data_pull/R/set_folders.R`
+
+
 #Get all fundraisers for target charities (just basic information)
 fundraiser_search_data_all <-
   map2(charity_data_s$charity_name, charity_data_s$justgiving_id, get_charity_fundraising_pages) %>%
@@ -28,7 +31,7 @@ fundraiser_search_data_all <- fundraiser_search_data_all %>%
   left_join(charity_data_s, by="charity_name")
 
 #Filter for pages which have been created since the last data pull was conducted
-fundraiser_search_data_all <- fundraiser_search_data_all %>% 
+fundraiser_search_data_all <- fundraiser_search_data_all %>%
   filter(CreatedDate >= last_pull)
 
 #temp: intermediate exports because the process takes so long:
