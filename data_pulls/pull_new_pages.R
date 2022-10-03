@@ -1,15 +1,12 @@
 #### Script for running pull for new pages ####
 # Can be automated by modifying the shell script pull_new_top10.sh  
-rm(list=ls())
 #### Load packages ####
-
-install.packages("pacman")
 
 library(pacman)
 
 p_load(dplyr,magrittr,purrr,tidyverse,tidyr,broom,janitor, here,glue,
        dataMaid,readr,lubridate, httr,jsonlite,rlist,XML,
-       install = TRUE) #git2r is new
+       install = TRUE)
 
 #### Pull in the repo based in the working directory (to avoid merge conflicts) ####
 
