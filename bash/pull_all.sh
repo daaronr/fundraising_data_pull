@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # A script to pull data from effective charities
-Rscript data_pulls/pull_effective.R
+cd R
+Rscript -e "source('set_folders.R'); source('my_app_id.R'); source('functions.R'); source('just_giving_data_pull.R')"
 
 # Push to Github
 GIT=`which git`

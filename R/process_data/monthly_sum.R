@@ -3,10 +3,6 @@
 # In order to avoid processing of a large number of files, instead combine data from each month
 
 # Import necessary packages, functions and folder names
-library(here)
-here <- here::here
-
-source(here::here("R", "process_data", "folders_funcs.R"))
 
 #### Main ####
 
@@ -24,6 +20,7 @@ fund_file_df <- tibble(fund_files) %>%
          path = file.path(fund_folder, fund_files))
 
 pull_months <- unique(don_file_df$month)
+print(pull_months)
 
 invisible(
   lapply(pull_months, monthly_sum, dir = monthly_dons, df = don_file_df, id_col = "id") )

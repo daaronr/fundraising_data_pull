@@ -3,11 +3,6 @@ start_time <- Sys.time()
 library(here)
 here <- here::here
 
-
-#p_load(multidplyr)
-#cluster <- new_cluster(4)
-#cluster_library(cluster, "dplyr")
-
 #deleted because this is called in 'main' source(here::here("R", "process_data", "folders_funcs.R"))
 
 # Due to the amount of data downloading is becoming slow may be worth changing
