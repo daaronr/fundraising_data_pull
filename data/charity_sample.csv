@@ -1,64 +1,51 @@
-charity_name,regno,justgiving_id,cause_area,eaf,give_well_top_2017,give_well_standout_2017,life_you_can_save,ace,givewell_other,ad_hoc_david
-"Macmillan Cancer Support",261017,2116,,,,,,,,9
-"St John Ambulance",1077265,11205,,,,,,,,9
-"British Heart Foundation",225971,183092,,,,,,,,9
-"Guide Dogs",209617,2261,,,,,,,,9
-"Great Ormond Street Hospital",1160024,254,,,,,,,,9
-"Cancer Research UK",1089464,2357,,,,,,,,9
-"Marie Curie",207994,50,,,,,,,,9
-"RNLI - Royal National Lifeboat Institution",209603,11200,,,,,,,,9
-"Keep Britain Tidy",1071737,,,,,,,,,9
-"WWF",1081247,2344,,,,,,,,9
-"80,000 Hours",,,Effective altruism,1,,,,,,
-Against Malaria Foundation,,,Global poverty,1,1,,1,,,
-Albert-Schweitzer-Foundation,,,Animals,1,,,,,,
-Animal Charity Evaluators,,,Animals,1,,,,,,
-Animal Equality,1168309,822548,Animals,1,,,,1,,
-Animal Ethics,,,Animals,1,,,,,,
-Center for Applied Rationality,,,Effective altruism,1,,,,,,
-Centre for Effective Altruism,1149828,,Effective altruism,1,,,,,,
-Cool Earth,1117978,183708,Climate change,1,,,,,,
-Development Media International,,,Global poverty,1,,1,1,,,
-END Fund - deworming program,1122574,,Global poverty,1,1,,,,,
-Evidence Action,,2238024,Global poverty,1,1,,1,,,
-Food Fortification Initiative,,,Global poverty,1,,1,,,,
-Future of Humanity Institute,,,Future,1,,,,,,
-GAIN - Universal Salt Iodization program,,,Global poverty,1,,1,1,,,
-"Georgetown University Initiative on Innovation, Development, and Evaluation ? Zusha! Road Safety Campaign",,,,,,1,,,,
-GiveDirectly,1167938,,Global poverty,1,1,,1,,,
-GiveWell,,,Global poverty,1,,,,,,
-Great Ape Project,,,Animals,1,,,,,,
-Humane Slaughter Association,1159690,,Animals,1,,,,,,
-Iodine Global Network,,,Global poverty,1,,1,1,,,
-Living Goods,,,Global poverty,1,,1,1,,,
-Machine Intelligence Research Institute,,1927037,Future,1,,,,,,
-Malaria Consortium,1099776,181721,Global poverty,1,1,,,,,
-Mercy for Animals,,,Animals,1,,,,,,
-New Incentives,,,Global poverty,1,,,,,,
-Oxfam,202918,13441,Global poverty,,,,1,,,
-Project Healthy Children,,,Global poverty,1,,1,1,,,
-Schistosomiasis Control Initiative,273071,181972,Global poverty,1,1,,1,,,
-Sightsavers,207544,179,Global poverty,1,1,,,,,
-The Good Food Institute,,,Animals,1,.,,,1,,
-The Humane League,,,Animals,1,,,,1,,
-Helen Keller International,,,Global poverty,,1,,1,,,
-D-Rev ,,,Global poverty,,,,1,,,
-Fistula Foundation,,,Global poverty,,,,1,,,
-Fred Hollows Foundation ,,,Global poverty,,,,1,,,
-Innovations for Poverty Action,,,Global poverty,,,,1,,,
-Once Acre Fund,,998971,Global poverty,,,,1,,,
-Population Services International,,1869770,Global poverty,,,,1,,,
-Possible-NOT-IDD,,,Global poverty,,,,1,,,
-SEVA,,,Global poverty,,,,1,,,
-Village Enterprise ,,,Global poverty,,,,1,,,
-Global Fund To Fight Aids Tuberculosis And Malaria,980380092,,Global poverty,,,,,,1,
-Gavi Alliance,980593375,,Global poverty,,,,,,1,
-The Carter Center Inc,581454716,,Global poverty,,,,,,1,
-Micronutrient Initiative Usa Inc,421772162,,Global poverty,,,,,,1,
-Episcopal Relief,731635264,,Global poverty,,,,,,1,
-Unicef UK,1072612,181813,Global poverty,,,,,,1,
-Medecins Sans Frontieres (UK),1026588,253,Global poverty,,,,,,,1
-No lean season,,,Global poverty,,,,,,,
-Malaria No More,1126222,186165,Global poverty,,,,,,,1
-WaterAid,288701,54697,Global poverty,,,,,,,1
-Care International UK,292506,180,Global poverty,,,,,,,1
+justgiving_id,charity_registration_id,charity_name,charity_url
+181813,1072612,Unicef UK,https://www.justgiving.com/unicef
+52893,285908,World Vision UK,https://www.justgiving.com/worldvisionuk
+70625,313757,Voluntary Service Overseas,https://www.justgiving.com/vso
+2344,1081247,WWF-UK,https://www.justgiving.com/wwf
+54697,288701,WaterAid,https://www.justgiving.com/wateraid
+2956214,1086915,Youth Sport Trust UK,https://www.justgiving.com/youthsporttrustuk
+183,207711,Versus Arthritis,https://www.justgiving.com/versusarthritis
+11135,1081849,World Animal Protection,https://www.justgiving.com/worldanimalprotection
+12439,1075032,Youth Music,https://www.justgiving.com/Youth-Music
+11191,294344,Woodland Trust,https://www.justgiving.com/woodlandtrust
+130521,1079675,The Prince's Trust,https://www.justgiving.com/theprincestrust
+112719,1060078,United Jewish Israel Appeal,https://www.justgiving.com/ujia
+136403,1085760,Brooke,https://www.justgiving.com/thebrooke
+99181,1043985,UCKG HelpCentre,https://www.justgiving.com/uckg
+114842,1062559,Teenage Cancer Trust,https://www.justgiving.com/teenagecancertrust
+113059,1060458,Wales Millennium Centre,https://www.justgiving.com/wmc
+11151,209259,"Variety, the Children's Charity",https://www.justgiving.com/varietyGB
+319,288527,Terrence Higgins Trust,https://www.justgiving.com/TerrenceHiggins
+36578,255424,Royal Exchange Theatre Company Limited,https://www.justgiving.com/xedjztposn
+63355,306122,Youth Hostels Association (England And Wales),https://www.justgiving.com/yha
+735144,268369,Women V Cancer - Cycle Brazil,https://www.justgiving.com/womenvcancer-cyclebrazil
+3176528,1128090,"Outward Bound International, The Outward Bound Trust, OB USA, & NYC Outward Bound Schools",https://www.justgiving.com/thebigrappel
+2108,212810,YMCA England & Wales,https://www.justgiving.com/ymcaeng
+60613,298028,Victim Support,https://www.justgiving.com/victimsupport
+148389,1097977,Tonbridge School,https://www.justgiving.com/tonbridgeschool
+56275,291222,Volunteering Matters,https://www.justgiving.com/VolunteeringMatters
+16186,208728,Zoological Society Of London,https://www.justgiving.com/zsl
+183627,207812,Turn2us,https://www.justgiving.com/turn2us
+15498,207238,The Wildlife Trusts,https://www.justgiving.com/wildlifetrusts
+2329,311877,Young Epilepsy,https://www.justgiving.com/youngepilepsy
+143344,1092857,Treloar's,https://www.justgiving.com/treloartrust
+11371,1001957,We Are With You,https://www.justgiving.com/wearewithyoucharity
+183302,801395,NCT,https://www.justgiving.com/tnct
+2221,265249,United Response,https://www.justgiving.com/united-response
+184990,309093,The Wellington College,https://www.justgiving.com/wco
+183566,1113729,Thomas Pocklington Trust,https://www.justgiving.com/thomaspocklington
+17260,211091,Together for Mental Wellbeing,https://www.justgiving.com/together
+39421,262259,Norwich Theatre Royal,https://www.justgiving.com/theatreroyal-norwichtrust
+2808505,312612,John Whitgift Foundation,https://www.justgiving.com/thewhitgiftfoundation
+221,234887,Turning Point,https://www.justgiving.com/turningpoint
+3127128,1112775,The Workers' Educational Association,https://www.justgiving.com/w-e-a
+16666,209782,Together Trust,https://www.justgiving.com/togethertrust
+188327,254140,Rapport Housing & Care,https://www.justgiving.com/thewishappeal
+801769,1125376,Woldingham School Foundation,https://www.justgiving.com/woldingham-school
+3054306,527180,Trent College,https://www.justgiving.com/trentcollege
+3100262,1086829,The Dean Close Foundation,https://www.justgiving.com/thedeanclosefoundation
+719243,294832,Walsingham Support,https://www.justgiving.com/walsingham-support
+185514,1090163,Thera Trust,https://www.justgiving.com/theratrust
+2354728,1031602,Westminster Drug Project (WDP),https://www.justgiving.com/westminsterdrugproject
+71428,1000851,Ummah Welfare Trust,https://www.justgiving.com/uwt
