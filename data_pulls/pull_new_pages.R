@@ -1,9 +1,6 @@
 #### Script for running pull for new pages ####
 # Can be automated by modifying the shell script pull_new_top10.sh  
-rm(list=ls())
 #### Load packages ####
-
-install.packages("pacman")
 
 library(pacman)
 

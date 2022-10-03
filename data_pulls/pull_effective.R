@@ -1,4 +1,4 @@
-#### Automated Pull for effective charities only ####
+#### Automated Pull for effective charities only  (DOUBLECHECK -- this seems to do it for top10+)####
 rm(list=ls())
 #### Load packages ####
 
@@ -6,7 +6,7 @@ library(pacman)
 
 p_load(dplyr,magrittr,purrr,tidyverse,tidyr,broom,janitor, here,glue,
        dataMaid,readr,lubridate, httr,jsonlite,rlist,XML,
-       install = FALSE) #git2r is new
+       install = FALSE)
 
 #Setting file paths and folders
 source("R/set_folders.R")
