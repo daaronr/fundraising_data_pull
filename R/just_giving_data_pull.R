@@ -1,7 +1,5 @@
 #just_giving_data_pull.R: This script downloads all current data for the target (effective) charities and the 'top-10' UK charities
 
-#(note: a file with the same name was previously doing only the effective charities)
-# note (3rd Feb) iirc I don't think i've ever successfully run this file, it takes so so long to complete likely due to the inclusion of 'top-10' charities
 
 #It also saves a snapshot
 
@@ -10,6 +8,8 @@ charity_data_s <- charities_csv_sample %>%
   read_csv %>%
   drop_na(charity_name)
 
+# Note: these names were defined in `DRfundraising_data_pull/R/set_folders.R`
+
 
 #Get all fundraisers for target charities (just basic information)
 fundraiser_search_data_all <-
@@ -17,7 +17,7 @@ fundraiser_search_data_all <-
   reduce(bind_rows)
 
 fundraiser_search_data_all <- fundraiser_search_data_all %>%
-  rename(charity_name=charity) %>%
+  rename(charity_name = charity) %>%
   left_join(charity_data_s, by="charity_name")
 
 #temp: intermediate exports because the process takes so long:
