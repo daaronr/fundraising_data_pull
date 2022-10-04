@@ -2,3 +2,8 @@
 .Rproj.user
 data/.DS_Store
 nohup.out 
+
+data/data_pulls.csv
+data/experimental_pages.csv
+data/treatments.csv
+data/donations_to_experimental_pages.csv

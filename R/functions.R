@@ -40,8 +40,6 @@ get_charity_fundraising_pages <- function(charity_name, id){
   return(fundraisers_data)
 }
 
-
-
 #This takes a fundraiser's id and gets the data for it (a single row of info)
 get_fundraising_data <- function(fundraiser_id){
   print(paste('Getting data for fundraiser with id', fundraiser_id))
