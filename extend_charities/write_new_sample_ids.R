@@ -9,4 +9,4 @@ top_1000 <- read_csv(here("extend_charities", "top_1000_list.csv"))
 
 df %>% filter(!is.na(justgiving_id)) %>%
   head(50) %>%
-  write_csv(here("data", "charity_sample.csv"))
+  write_csv(here("data", "guardian_top_50.csv"))
