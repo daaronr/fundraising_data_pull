@@ -1,9 +1,7 @@
 # FORK of Toby's original code to interact with the JustGiving API
 
 I (@daaronr) have adjusted it slightly (see commits) and I am using this to do data pulls and capture data used elsewhere.
-Adapted by Oska to automate the process of data pulling and munging
-
-This should facilitate the actual running of the experiments.
+Adapted by Oska to automate the process of data pulling and munging.
 
 # Charity seeding experiment code and process
 
