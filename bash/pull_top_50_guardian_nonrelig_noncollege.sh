@@ -4,7 +4,7 @@
 #cd R
 
 Rscript R/justgiving_data_pull.R \
-    --outpath=data/guardian_top_50_nonrelig_noncollege \
+    --out_path=data/guardian_top_50_nonrelig_noncollege \
     --charity_list=data/guardian_top_50_nonrelig_noncollege.csv
 
 # Push to Github
