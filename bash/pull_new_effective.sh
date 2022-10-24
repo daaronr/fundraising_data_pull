@@ -6,7 +6,7 @@ cd R
 Rscript R/justgiving_data_pull.R \
     --outpath=data/daily_effective_data \
     --charity_list=data/effective_charities.csv \
-    --new_only=TRUE
+    --new_only
 
 # Push to Github
 GIT=`which git`

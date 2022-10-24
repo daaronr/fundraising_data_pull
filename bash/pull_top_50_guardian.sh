@@ -9,6 +9,6 @@ Rscript R/justgiving_data_pull.R \
 # Push to Github
 GIT=`which git`
 ${GIT} pull
-${GIT} add data/effective_data
+${GIT} add data/guardian_top_50
 ${GIT} commit -m "Data pull Guardian top 50: `date +'%Y-%m-%d'`"
 ${GIT} push
