@@ -10,21 +10,25 @@ here <- here::here
 Sys.setlocale("LC_ALL", "C")
 
 #### Reading in all the data from the repo ####
-donations_all <- monthly_dons %>%
-  list.files(pattern = "*.csv", recursive = TRUE, full.names = TRUE) %>%
-  map_df(~fread(., colClasses = "character")) %>% # Ensure there are no type errors
+
+
+#### Reading in all the data from the repo ####
+donations_all <-  read_rds(here(
+  "data", "daily_guardian_top_50_nonrelig_noncollege", "just_giving_data_snapshots","donations", 
+  "donations2022-10-22.rds"))  %>%
   filter(!duplicated(id)) %>%
   janitor::clean_names("snake") %>%
   select(!!donation_vars) %>%
   type_convert()
 
-fundraisers_all <- monthly_fund %>%
-  list.files(pattern = "*.csv", recursive = TRUE, full.names = TRUE) %>%
-  map_df(~fread(., colClasses = "character")) %>%
+fundraisers_all <- read_rds(here(
+  "data", "daily_guardian_top_50_nonrelig_noncollege", "just_giving_data_snapshots","fundraisers", 
+  "fundraisers2022-10-22.rds")) %>%
   janitor::clean_names("snake") %>%
   distinct() %>%
   select(!!fundraiser_vars) %>%
-  type_convert() # Convert types back
+  type_convert()
+
 
 #Remove duplicates by picking the most recent version of fundraisers
 fundraisers_all <- fundraisers_all %>%
@@ -120,7 +124,6 @@ fundraisers_all <- fundraisers_all %>%
   mutate_at(.funs = list( ~ as.numeric(.)), .vars = vars(matches("Raised|Estimated|Amount"))) %>%
   mutate_at(.funs = list( ~ as.factor(.)), .vars = vars(matches("Type|charity_id"))) %>%
   mutate(activity_charity_created = as.logical(activity_charity_created))
-
 
 
 #### Creating summary variables for donations####
@@ -451,9 +454,8 @@ mutate(
   )
 )
 
-  #Filter out duplicates
+#Filter out duplicates
 fdd_fd %<>% distinct(.keep_all = TRUE)
-
 
 #### Calculating new variables for analysis. ####
 fdd_fd %<>%
@@ -492,15 +494,15 @@ fdd_fd <- fdd_fd %>%
   )
 
 fdd_fd_meanto7 <- fdd_fd %>%
-    filter(!is.na(dur_cd_7don)) %>%
-    filter(!is.infinite(dur_cd_7don)) %>%
+  filter(!is.na(dur_cd_7don)) %>%
+  filter(!is.infinite(dur_cd_7don)) %>%
   group_by(d_effective) %>%
   summarise(
     mean_time_to_7 = mean(dur_cd_7don, na.rm=TRUE),
     med_time_to_7 = median(dur_cd_7don, na.rm = TRUE),
   ) %>%
   ungroup() %>% 
-select(d_effective, mean_time_to_7, med_time_to_7)
+  select(d_effective, mean_time_to_7, med_time_to_7)
 
 fdd_fd <- left_join(fdd_fd, fdd_fd_meanto7, by = d_effective)
 
@@ -511,7 +513,11 @@ source(here("R", "process_data", "clean_data.R"), local = TRUE)
 end_time <- Sys.time()
 duration = end_time - start_time
 print(duration)
-saveRDS(fdd_fd, file = "rds/fundraisers_w_don_info")
-saveRDS(donations_all, file = "rds/donations_all")
-saveRDS(fundraisers_all, file = "rds/fundraisers_all")
+
+dir.create(file.path("rds", "top50_norelig_noschool"), showWarnings = FALSE)
+
+saveRDS(fdd_fd, file = "rds/top50_norelig_noschool/fundraisers_w_don_info")
+
+saveRDS(donations_all, file = "rds/top50_norelig_noschool/donations_all")
+saveRDS(fundraisers_all, file = "rds/top50_norelig_noschool/fundraisers_all")
 

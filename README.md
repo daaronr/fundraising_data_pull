@@ -1,6 +1,6 @@
 # FORK of Toby's original code to interact with the JustGiving API
 
-We (@daaronr and @oskasf) have adjusted it slightly (see commits) and  using this to do data pulls and capture data used elsewhere.
+We (@daaronr and @oskasf) have adjusted it slightly (see commits) and are using this to do data pulls and capture data used elsewhere.
 
 Adapted by Oska to automate the process of data pulling and munging.
 
@@ -35,7 +35,6 @@ Contains scripts to pull new pages from JustGiving. Each file is fairly self exp
 - *folder_funcs.R* defines functions which are used in *monthly_sum.R*
 - *main.R* ties together all R files in this folder
 - *monthly_sum.R* is a file to speed up the process of combining. Data on donations and fundaisers are aggregated by the month in which they were pulled and written to a total dataframe for the month. This removes the need to re-read and re-combine all past data when runnning *combine_available_data.R*. Instead only the monthly dataframes are combined, of which there are much fewer (around 20-30 instead of 300). Note that *monthly_sum.R* will ignore previous months data but combine the current months.
-
 
 
 ## Lists of charities 
@@ -90,8 +89,6 @@ Note that we must run this regularly to retain data from expired pages (which ca
 The charities that this script uses (in effective_charities.csv) are all recommended by one or more organisations associated with effective altruism (although in some cases the lists only recommend targeting a particular part of the charity's work) [and see comment below](#notes).
 
 
-
-
 *[Note, 4 Aug 2018: ATM both lists seem to include the international megacharities]*
 
 -->
@@ -139,9 +136,4 @@ We recently pulled 9999 entries (the max) per charity for each of the top-10 UK 
 
 # 12th September
 Data pulls were previously only pulling the effective charities, this has been changed now.
-
-
-
-
-
 
