@@ -8,7 +8,7 @@ Adapted by Oska to automate the process of data pulling and munging.
 
 ## Pulls
 
-- TODO: set up code for periodic data pull
+<!-- TODO: set up code for periodic data pull -->
 
 ## Files
 
@@ -25,7 +25,7 @@ Contains scripts to pull new pages from JustGiving. Each file is fairly self exp
 
 *Some of these may be used in the aforementioned scripts, or in scripts we will create... need to tidy up/organise*
 
-- *just_giving_data_pull.R* pulls data on charities which can be specified using command line arguments. Running `rscript just_giving_data_pull.R --help` gives further detail on all available arguments. (See `optparse` tool) 
+- *just_giving_data_pull.R* pulls data on charities which can be specified using command line arguments. Running `rscript just_giving_data_pull.R --help` gives further detail on all available arguments. (See `optparse` tool)
 - *functions.R* defines functions for data pulls.
 - *get_current_state_and_randomise.R* defines the randomisation process, outputs a file listing all new treatment groups, and saves the current state
 
@@ -37,19 +37,19 @@ Contains scripts to pull new pages from JustGiving. Each file is fairly self exp
 - *monthly_sum.R* is a file to speed up the process of combining. Data on donations and fundaisers are aggregated by the month in which they were pulled and written to a total dataframe for the month. This removes the need to re-read and re-combine all past data when runnning *combine_available_data.R*. Instead only the monthly dataframes are combined, of which there are much fewer (around 20-30 instead of 300). Note that *monthly_sum.R* will ignore previous months data but combine the current months.
 
 
-## Lists of charities 
+## Lists of charities
 
-`data/guardian_top_50.csv`: 
+`data/guardian_top_50.csv`:
 `data/guardian_top_50_nonrelig_noncollege.csv`: removes 5 charities from the above, one college and four largely funding religious activities
 
-`data/effective_charities.csv`: all recommended by one or more organisations associated with effective altruism (may need updating) 
+`data/effective_charities.csv`: all recommended by one or more organisations associated with effective altruism (may need updating)
 
 `extend_charities/top_1000_list.csv`
 
 <!-- We also give a broader list in the file effective_charities_plus, including some additional international mega-charities like MSF.-->
 
 
-These orgs are: 
+These orgs are:
 [GiveWell](https://www.givewell.org/)
 https://www.thelifeyoucansave.org/
 https://ea-foundation.org/
@@ -69,7 +69,7 @@ replacing "[ID]" with your ID, without the brackets.
 Next...
 /
 
-<!-- 
+<!--
 Install the packages at the top of main.R.
 Open `fundraising_data_pull.Rproj`  using R and run `main.R`.
 It will take 30 - 60 minutes to download all the data; this appears to be determined by Just Giving API limits.
@@ -85,7 +85,7 @@ Note that we must run this regularly to retain data from expired pages (which ca
 *DR: The above needs clarification. The 'all_' files are no longer being created I think*
 
 
-<!-- 
+<!--
 The charities that this script uses (in effective_charities.csv) are all recommended by one or more organisations associated with effective altruism (although in some cases the lists only recommend targeting a particular part of the charity's work) [and see comment below](#notes).
 
 
@@ -124,7 +124,7 @@ my_app_id <- {/your app id}
 
 
 
-<!-- 
+<!--
 
 https://github.com/daaronr/fundraising_data_pull/commit/1907998881420a8bec68592ae3862c6aa7d63d75#r86208081
 

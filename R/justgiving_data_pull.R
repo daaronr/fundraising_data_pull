@@ -1,8 +1,9 @@
 library(pacman)
 
 p_load(dplyr,magrittr,purrr,tidyverse,tidyr,broom,janitor,here,glue,
-       dataMaid,readr,lubridate, httr,jsonlite,rlist,XML,optparse,
-       install = FALSE)
+       dataMaid,readr,lubridate, httr,jsonlite,rlist,XML, install = FALSE)
+
+p_load(optparse, install = TRUE)
 
 start <- Sys.time()
 

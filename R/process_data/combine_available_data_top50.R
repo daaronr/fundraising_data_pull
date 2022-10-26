@@ -504,7 +504,7 @@ fdd_fd_meanto7 <- fdd_fd %>%
   ungroup() %>% 
   select(d_effective, mean_time_to_7, med_time_to_7)
 
-fdd_fd <- left_join(fdd_fd, fdd_fd_meanto7, by = d_effective)
+fdd_fd <- left_join(fdd_fd, fdd_fd_meanto7, by = "d_effective")
 
 fdd_fd %<>% mutate(created_mo = floor_date(created_date, "months"))
 
