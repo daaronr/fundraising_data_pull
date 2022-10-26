@@ -10,7 +10,7 @@ FORK of Toby's original code to interact with the JustGiving API. We (@daaronr a
 
 **bash Folder:**
 
-Contains scripts to pull new pages from JustGiving. Each file is fairly self explanatory given that command line arguments for the list of charities and output folders are expressed explicitly. See the below explanation of *justgiving_data_pull.R* for more info. Files should be run from the repo root directory.
+Contains scripts to pull new pages from JustGiving. Each file is fairly self explanatory; each contains explicit command line arguments for the list of charities and output folders. See the below explanation of `justgiving_data_pull.R` for more info. These scripts should be run from the repo root directory.
 
 - *data_munge.sh* combines all data using R scripts (script from R/process_data/main.R, calling a bunch of other scripts); saves 3 RDS files
 - *move_final_dfs.sh*: A script to move dataframes which are exported from running `combine_available_data.R` into the `fundraising_data_pull` repo.  (This code presumes that both repos are stored in the same folder on your system. Note this may be redundant to code on the other side doing this.)
@@ -21,11 +21,12 @@ Contains scripts to pull new pages from JustGiving. Each file is fairly self exp
 
 **R Folder:**
 
-*Some of these may be used in the aforementioned scripts, or in scripts we will create... need to tidy up/organise*
+<!-- Some of these may be used in the aforementioned scripts, or in scripts we will create... need to tidy up/organise -->
 
 - *just_giving_data_pull.R* pulls data on charities which can be specified using command line arguments. Running `rscript just_giving_data_pull.R --help` gives further detail on all available arguments. (See `optparse` tool)
 
 - *functions.R* defines functions for data pulls.
+- *functions.R* defines functions for data pulls
 
 - *get_current_state_and_randomise.R* defines the randomisation process, outputs a file listing all new treatment groups, and saves the current state
 
@@ -73,7 +74,6 @@ Next...
 Install the packages at the top of main.R.
 Open `fundraising_data_pull.Rproj`  using R and run `main.R`.
 It will take 30 - 60 minutes to download all the data; this appears to be determined by Just Giving API limits.
-
 -->
 
 ## What are the files created?
@@ -121,8 +121,6 @@ Note: additional details for our project [moved to private page](https://github.
 my_app_id <- {/your app id}
 
 *You may need to add quotes around this, i.e.:* `my_app_id <- "/id_number"`
-
-
 
 <!--
 
