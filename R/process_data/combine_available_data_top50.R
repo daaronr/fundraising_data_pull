@@ -11,9 +11,7 @@ Sys.setlocale("LC_ALL", "C")
 
 #### Reading in all the data from the repo ####
 
-
-#### Reading in all the data from the repo ####
-donations_all <-  read_rds(here(
+donations_all_daily <-  read_rds(here(
   "data", "daily_guardian_top_50_nonrelig_noncollege", "just_giving_data_snapshots","donations", 
   "donations2022-10-22.rds"))  %>%
   filter(!duplicated(id)) %>%
@@ -21,13 +19,33 @@ donations_all <-  read_rds(here(
   select(!!donation_vars) %>%
   type_convert()
 
-fundraisers_all <- read_rds(here(
+donations_all_plus <-  read_rds(here(
+  "data", "guardian_top_50_nonrelig_noncollege", "just_giving_data_snapshots","donations", 
+  "donations2022-10-26.rds"))  %>%
+  filter(!duplicated(id)) %>%
+  janitor::clean_names("snake") %>%
+  select(!!donation_vars) %>%
+  type_convert()
+
+donations_all <- rbind(donations_all_daily, donations_all_plus)
+
+fundraisers_all_daily <- read_rds(here(
   "data", "daily_guardian_top_50_nonrelig_noncollege", "just_giving_data_snapshots","fundraisers", 
   "fundraisers2022-10-22.rds")) %>%
   janitor::clean_names("snake") %>%
   distinct() %>%
   select(!!fundraiser_vars) %>%
   type_convert()
+
+fundraisers_all_plus <- read_rds(here(
+  "data", "guardian_top_50_nonrelig_noncollege", "just_giving_data_snapshots","fundraisers", 
+  "fundraisers2022-10-26.rds")) %>%
+  janitor::clean_names("snake") %>%
+  distinct() %>%
+  select(!!fundraiser_vars) %>%
+  type_convert()
+
+fundraisers_all <- rbind(fundraisers_all_daily, fundraisers_all_plus)
 
 
 #Remove duplicates by picking the most recent version of fundraisers
