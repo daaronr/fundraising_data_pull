@@ -1,8 +1,4 @@
-# FORK of Toby's original code to interact with the JustGiving API
-
-We (@daaronr and @oskasf) have adjusted it slightly (see commits) and are using this to do data pulls and capture data used elsewhere.
-
-Adapted by Oska to automate the process of data pulling and munging.
+FORK of Toby's original code to interact with the JustGiving API. We (@daaronr and @oskasf) have adjusted it slightly (see commits) and are using this to do data pulls and capture data used elsewhere.Adapted by Oska to automate the process of data pulling and munging.
 
 # Charity seeding experiment code and process
 
@@ -17,16 +13,20 @@ Adapted by Oska to automate the process of data pulling and munging.
 Contains scripts to pull new pages from JustGiving. Each file is fairly self explanatory given that command line arguments for the list of charities and output folders are expressed explicitly. See the below explanation of *justgiving_data_pull.R* for more info. Files should be run from the repo root directory.
 
 - *data_munge.sh* combines all data using R scripts (script from R/process_data/main.R, calling a bunch of other scripts); saves 3 RDS files
-- *move_final_dfs.sh* A script to move dataframes which are exported from running `combine_available_data.R` into the `fundraising_data_pull` repo.  (This code presumes that both repos are stored in the same folder on your system.)
-- *pull_effective.sh* pulls data on effective charities, and pushes to github
+- *move_final_dfs.sh*: A script to move dataframes which are exported from running `combine_available_data.R` into the `fundraising_data_pull` repo.  (This code presumes that both repos are stored in the same folder on your system. Note this may be redundant to code on the other side doing this.)
+- *pull_effective.sh* pulls data on effective charities (using `R/justgiving_data_pull.R` and parameters), and pushes to Github
 - *pull_new_effective.sh* pulls data on new effective charities and pushes to Github
+- `pull_top_50_guardian_nonrelig_noncollege.sh`
+- `pull_new_top_50_guardian_nonrelig_noncollege.sh`
 
 **R Folder:**
 
 *Some of these may be used in the aforementioned scripts, or in scripts we will create... need to tidy up/organise*
 
 - *just_giving_data_pull.R* pulls data on charities which can be specified using command line arguments. Running `rscript just_giving_data_pull.R --help` gives further detail on all available arguments. (See `optparse` tool)
+
 - *functions.R* defines functions for data pulls.
+
 - *get_current_state_and_randomise.R* defines the randomisation process, outputs a file listing all new treatment groups, and saves the current state
 
 **R/process_data:**
@@ -34,7 +34,7 @@ Contains scripts to pull new pages from JustGiving. Each file is fairly self exp
 - *combine_available_data.R* combines all the donation and fundraising data into 3 key dataframes which have summary statistics
 - *folder_funcs.R* defines functions which are used in *monthly_sum.R*
 - *main.R* ties together all R files in this folder
-- *monthly_sum.R* is a file to speed up the process of combining. Data on donations and fundaisers are aggregated by the month in which they were pulled and written to a total dataframe for the month. This removes the need to re-read and re-combine all past data when runnning *combine_available_data.R*. Instead only the monthly dataframes are combined, of which there are much fewer (around 20-30 instead of 300). Note that *monthly_sum.R* will ignore previous months data but combine the current months.
+- *monthly_sum.R* is a file to speed up the process of combining. Data on donations and fundaisers are aggregated by the month in which they were pulled and written to a total dataframe for the month. This removes the need to re-read and re-combine all past data when running *combine_available_data.R*. Instead only the monthly dataframes are combined, of which there are much fewer (around 20-30 instead of 300). Note that *monthly_sum.R* will ignore previous months data but combine the current months.
 
 
 ## Lists of charities
