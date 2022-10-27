@@ -1,6 +1,6 @@
 {
   "R": {
-    "Version": "4.1.2",
+    "Version": "4.2.1",
     "Repositories": [
       {
         "Name": "CRAN",
@@ -231,14 +231,6 @@
       "Hash": "bb4341986bc8b914f0f0acf2e4a3f2f7",
       "Requirements": []
     },
-    "commonmark": {
-      "Package": "commonmark",
-      "Version": "1.8.0",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "2ba81b120c1655ab696c935ef33ea716",
-      "Requirements": []
-    },
     "cpp11": {
       "Package": "cpp11",
       "Version": "0.4.2",
@@ -464,6 +456,14 @@
       "Hash": "15e9634c0fcd294799e9b2e929ed1b86",
       "Requirements": []
     },
+    "getopt": {
+      "Package": "getopt",
+      "Version": "1.20.3",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "ad68e3263f0bc9269aab8c2039440117",
+      "Requirements": []
+    },
     "ggplot2": {
       "Package": "ggplot2",
       "Version": "3.3.6",
@@ -482,14 +482,6 @@
         "tibble",
         "withr"
       ]
-    },
-    "git2r": {
-      "Package": "git2r",
-      "Version": "0.30.1",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "e0c6a04a3e7b90e64213d09128f74f1b",
-      "Requirements": []
     },
     "glue": {
       "Package": "glue",
@@ -641,28 +633,6 @@
         "jsonlite",
         "mime",
         "openssl"
-      ]
-    },
-    "huxtable": {
-      "Package": "huxtable",
-      "Version": "5.5.0",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "038e4e4d9f8914dbe03616e3336b8234",
-      "Requirements": [
-        "R6",
-        "assertthat",
-        "commonmark",
-        "fansi",
-        "generics",
-        "glue",
-        "htmltools",
-        "memoise",
-        "rlang",
-        "stringi",
-        "stringr",
-        "tidyselect",
-        "xml2"
       ]
     },
     "ids": {
@@ -865,6 +835,16 @@
       "Hash": "b9621e75c0652041002a19609fb23c5a",
       "Requirements": [
         "askpass"
+      ]
+    },
+    "optparse": {
+      "Package": "optparse",
+      "Version": "1.7.3",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "aa4a7717b5760a769c7fd3d34614f2a2",
+      "Requirements": [
+        "getopt"
       ]
     },
     "pacman": {
