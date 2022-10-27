@@ -48,7 +48,7 @@ get_fundraising_data <- function(fundraiser_id){
     xmlParse %>%
     xmlToList %>%
     list_to_tibble(my_recursive = T))
-    if(class(fundraiser) == "try-error"){
+    if("try-error" %in% class(fundraiser)){
     return(NULL)
   }
     return(fundraiser)
@@ -61,7 +61,7 @@ get_fundraiser_donations <- function(short_page_name){
   donation_data_response <- try(get_data_from_api(uri) %>%
     xmlParse %>%
     xmlToList)
-  if(class(donation_data_response) == "try-error"){
+  if("try-error" %in% class(donation_data_response)){
     return(NULL)
   }
   if(is.null(donation_data_response[['donations']])){
