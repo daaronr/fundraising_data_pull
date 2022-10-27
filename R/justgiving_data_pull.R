@@ -3,8 +3,6 @@ library(pacman)
 p_load(dplyr,magrittr,purrr,tidyverse,tidyr,broom,janitor,here,glue,
        dataMaid,readr,lubridate, httr,jsonlite,rlist,XML, install = FALSE)
 
-p_load(optparse, install = TRUE)
-
 start <- Sys.time()
 
 source(here("my_app_id.R"))
@@ -121,9 +119,13 @@ fundraiser_search_data_all <- fundraiser_search_data_all %>%
   rename(charity_name = charity) %>%
   left_join(charity_data_s, by="charity_name")
 
+print(paste("Found", nrow(fundraiser_search_data_all), "total pages"))
+
 #Filter for dates given above
 fundraiser_search_data_all <- fundraiser_search_data_all %>%
   filter(CreatedDate >= pull_from_date)
+
+print(paste("Collecting data on", nrow(fundraiser_search_data_all), "total pages"))
 
 #temp: intermediate exports because the process takes so long:
 intermed_folder <- file.path(data_folder, 'temp_downloads_data')
@@ -149,6 +151,7 @@ fundraising_page_data_all <- fundraising_page_data_all_t %>%
   select(-grep('image.', names(.))) %>%
   select(-grep('videos.', names(.)))%>%
   select(-grep('branding.', names(.))) %>%
+  select(-charity.description) %>% # Hugely reduces size of output dataframe
   mutate(date_downloaded = Sys.time())
 
 #Get all current donations on the fundraising pages
