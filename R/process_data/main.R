@@ -14,3 +14,5 @@ source(here("R", "process_data", "monthly_sum.R"))
 
 # Combine and clean data (note that this also calls clean_data.R)
 source(here("R", "process_data", "combine_available_data.R"))
+
+source(here("R", "process_data", "combine_available_data_top50.R"))

@@ -514,13 +514,14 @@ fdd_fd <- fdd_fd %>%
 fdd_fd_meanto7 <- fdd_fd %>%
   filter(!is.na(dur_cd_7don)) %>%
   filter(!is.infinite(dur_cd_7don)) %>%
-  group_by(d_effective) %>%
+  #group_by(d_effective) %>%
   summarise(
     mean_time_to_7 = mean(dur_cd_7don, na.rm=TRUE),
     med_time_to_7 = median(dur_cd_7don, na.rm = TRUE),
   ) %>%
-  ungroup() %>% 
-  select(d_effective, mean_time_to_7, med_time_to_7)
+  #ungroup() %>% 
+  #select(d_effective, mean_time_to_7, med_time_to_7)
+  select(mean_time_to_7, med_time_to_7)
 
 fdd_fd <- left_join(fdd_fd, fdd_fd_meanto7, by = "d_effective")
 
