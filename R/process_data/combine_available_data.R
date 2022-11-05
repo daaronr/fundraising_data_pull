@@ -285,6 +285,12 @@ donations_sum <- donations_sum %>%
                (donation_date <= (don1_date +
                   duration(days=p25_dd_7don)
                ))]
+    ),
+    cumcount_p25_dd_7don = max(
+      donnum[(donation_date > don1_date) &
+          (donation_date <= don1_date +
+              duration(days=p25_dd_7don)
+          )]
     )
   )   %>%
   sjlabelled::var_labels(

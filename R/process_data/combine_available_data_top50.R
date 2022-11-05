@@ -11,41 +11,26 @@ Sys.setlocale("LC_ALL", "C")
 
 #### Reading in all the data from the repo ####
 
-donations_all_daily <-  read_rds(here(
-  "data", "daily_guardian_top_50_nonrelig_noncollege", "just_giving_data_snapshots","donations", 
-  "donations2022-10-22.rds"))  %>%
-  filter(!duplicated(id)) %>%
-  janitor::clean_names("snake") %>%
-  select(!!donation_vars) %>%
-  type_convert()
+cleansteps_don <- function(df) {
+  df %>%
+    filter(!duplicated(id)) %>%
+    janitor::clean_names("snake") %>%
+    select(!!donation_vars) %>%
+    type_convert()
+}
 
-donations_all_plus <-  read_rds(here(
+donations_all <-  read_rds(here(
   "data", "guardian_top_50_nonrelig_noncollege", "just_giving_data_snapshots","donations", 
-  "donations2022-10-26.rds"))  %>%
-  filter(!duplicated(id)) %>%
-  janitor::clean_names("snake") %>%
-  select(!!donation_vars) %>%
-  type_convert()
+  "donations2022-10-27.rds"))  %>%
+  cleansteps_don
 
-donations_all <- rbind(donations_all_daily, donations_all_plus)
-
-fundraisers_all_daily <- read_rds(here(
-  "data", "daily_guardian_top_50_nonrelig_noncollege", "just_giving_data_snapshots","fundraisers", 
-  "fundraisers2022-10-22.rds")) %>%
-  janitor::clean_names("snake") %>%
-  distinct() %>%
-  select(!!fundraiser_vars) %>%
-  type_convert()
-
-fundraisers_all_plus <- read_rds(here(
+fundraisers_all <- read_rds(here(
   "data", "guardian_top_50_nonrelig_noncollege", "just_giving_data_snapshots","fundraisers", 
-  "fundraisers2022-10-26.rds")) %>%
+  "fundraisers2022-10-27.rds")) %>%
   janitor::clean_names("snake") %>%
+    #sselect(!!fundraiser_vars) %>%
   distinct() %>%
-  select(!!fundraiser_vars) %>%
-  type_convert()
-
-fundraisers_all <- rbind(fundraisers_all_daily, fundraisers_all_plus)
+    type_convert()
 
 
 #Remove duplicates by picking the most recent version of fundraisers
@@ -306,7 +291,13 @@ donations_sum <- donations_sum %>%
                (donation_date <= (don1_date +
                   duration(days=p25_dd_7don)
                ))]
-    )
+    ),
+    cumcount_p25_dd_7don = max(
+      donnum[(donation_date > don1_date) &
+          (donation_date <= don1_date +
+              duration(days=p25_dd_7don)
+          )]
+    )    
   )   %>%
   sjlabelled::var_labels(
     cumsum_avgtime_to_3 = "donations after 1st don & before 'avg time to 3 total donations'",
@@ -523,7 +514,6 @@ fdd_fd_meanto7 <- fdd_fd %>%
   #select(d_effective, mean_time_to_7, med_time_to_7)
   select(mean_time_to_7, med_time_to_7)
 
-fdd_fd <- left_join(fdd_fd, fdd_fd_meanto7, by = "d_effective")
 
 fdd_fd %<>% mutate(created_mo = floor_date(created_date, "months"))
 
